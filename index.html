@@ -242,8 +242,7 @@
             width: 85%;
             max-width: 900px;
             height: 75vh;
-            background: #4fc3f7;
-            /* Sea color */
+            background: #a2d2df;
             border: 15px solid #5d4037;
             border-radius: 10px;
             position: relative;
@@ -252,8 +251,12 @@
             cursor: grab;
         }
 
-        .map-content:active {
-            cursor: grabbing;
+        /* The styles for the map image */
+        .map-content img.map-base {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .map-close {
@@ -276,59 +279,38 @@
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Map Elements */
-        .island-shape {
+        .map-marker {
             position: absolute;
-            background: #d7ccc8;
-            /* Land color */
-            border: 4px solid #795548;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1), 5px 5px 10px rgba(0, 0, 0, 0.2);
             cursor: pointer;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'chewy';
-            font-size: 1.5rem;
-            color: #3e2723;
-            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
-        }
-
-        .island-shape:hover {
-            background: #efebe9;
-            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s;
             z-index: 10;
         }
 
-        .malta-main {
-            top: 30%;
-            left: 20%;
-            width: 300px;
-            height: 200px;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        .map-marker:hover {
+            transform: translate(-50%, -50%) scale(1.2);
         }
 
-        .senglea-peninsula {
-            top: 45%;
-            left: 50%;
-            width: 120px;
-            height: 60px;
-            border-radius: 20px 80px 80px 20px;
-            background: #ffe082;
-            /* Highlighted */
-            z-index: 2;
+        .marker-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
         }
 
-        .senglea-label {
+        .marker-label {
             position: absolute;
-            top: -30px;
-            left: 0;
-            background: white;
-            padding: 2px 8px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
             border-radius: 5px;
-            font-size: 14px;
-            border: 1px solid #3e2723;
+            font-family: 'Chewy';
+            color: #3e2723;
+            white-space: nowrap;
+            border: 1px solid #5d4037;
             pointer-events: none;
+            font-size: 16px;
         }
 
         .pirate-ship-icon {
@@ -338,6 +320,7 @@
             cursor: pointer;
             filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
             user-select: none;
+            z-index: 5;
         }
 
         @keyframes sailShip {
@@ -350,110 +333,26 @@
             }
         }
 
-        .star-marker {
-            position: absolute;
-            font-size: 30px;
-            color: gold;
-            text-shadow: 0 0 5px orange;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-        }
-
-        .page-number {
-            position: absolute;
-            bottom: 25px;
-            right: 35px;
-            font-family: 'Chewy';
-            font-size: 20px;
-            color: #5d4037;
-            border: 2px solid #5d4037;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Interactive click animations */
-        .click-wiggle.clicked {
-            animation: wiggle 0.5s ease-in-out;
-        }
-
-        .click-hop.clicked {
-            animation: hop 0.5s ease-in-out;
-        }
-
-        .click-glow.clicked {
-            animation: intense-glow 1s ease-in-out;
-        }
-
-        @keyframes wiggle {
-
-            0%,
-            100% {
-                transform: rotate(0);
-            }
-
-            25% {
-                transform: rotate(-15deg);
-            }
-
-            75% {
-                transform: rotate(15deg);
-            }
-        }
-
-        @keyframes hop {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-50px);
-            }
-        }
-
-        @keyframes intense-glow {
-            50% {
-                filter: drop-shadow(0 0 30px #ffd700) brightness(1.5);
-            }
-        }
-
         /* Hidden Objects - Rabbits */
         .hidden-rabbit {
             position: absolute;
-            font-size: 24px;
-            opacity: 0.7;
+            width: 70px;
+            height: auto;
+            opacity: 0.9;
             cursor: pointer;
             transition: opacity 0.3s;
             z-index: 10;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
         }
 
         .hidden-rabbit:hover {
-            opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
         .hidden-rabbit.found {
             opacity: 0;
             pointer-events: none;
-            transform: scale(3) rotate(360deg);
+            transform: scale(2) rotate(360deg);
             transition: all 0.5s;
         }
 
@@ -472,6 +371,29 @@
             align-items: center;
             gap: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .rabbit-counter img {
+            width: 30px;
+            height: auto;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 25px;
+            right: 35px;
+            font-family: 'Chewy';
+            font-size: 20px;
+            color: #5d4037;
+            border: 2px solid #5d4037;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         /* Animations */
@@ -626,17 +548,16 @@
 </head>
 
 <body>
-    <div class="rabbit-counter">
-        <span>🐰</span> <span id="rabbit-count">0/8</span>
-    </div>
-
     <audio id="snd-turn" src="https://assets.mixkit.co/active_storage/sfx/2045/2045-preview.mp3"></audio>
-    <!-- Placeholder for other sounds -->
+
+    <div class="rabbit-counter">
+        <img src="rabbit.png" alt="Rabbit"> <span id="rabbit-count">0/8</span>
+    </div>
 
     <div class="book-container">
         <!-- Page 1: Title -->
         <div class="page active">
-            <div class="hidden-rabbit" style="bottom: 150px; left: 20px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 150px; left: 20px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="worner.png" alt="Wally Worner" class="anim-float click-wiggle">
             </div>
@@ -656,7 +577,7 @@
 
         <!-- Page 2: The Call -->
         <div class="page">
-            <div class="hidden-rabbit" style="top: 50px; right: 40px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 50px; right: 40px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="castle.png" alt="Castle" class="anim-float click-wiggle">
             </div>
@@ -679,7 +600,7 @@
 
         <!-- Page 3: The Voyage -->
         <div class="page">
-            <div class="hidden-rabbit" style="bottom: 120px; right: 10px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 120px; right: 10px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'sail')">
                 <img src="ship.png" alt="Ship" class="anim-sail click-wiggle">
             </div>
@@ -700,7 +621,7 @@
 
         <!-- Page 4: Meeting Valette -->
         <div class="page">
-            <div class="hidden-rabbit" style="top: 10px; left: 10px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 10px; left: 10px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="fortress.png" alt="Fortress" class="click-wiggle">
             </div>
@@ -720,7 +641,7 @@
 
         <!-- Page 5: Senglea -->
         <div class="page">
-            <div class="hidden-rabbit" style="top: 80px; left: 50%;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 80px; left: 50%;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'glow')">
                 <img src="house_stella.png" alt="Stella House" class="anim-glow click-glow">
             </div>
@@ -740,7 +661,7 @@
 
         <!-- Page 6: The Battle -->
         <div class="page">
-            <div class="hidden-rabbit" style="bottom: 120px; left: 10px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 120px; left: 10px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'shake')">
                 <img src="battle.png" alt="Battle" class="anim-battle click-wiggle">
             </div>
@@ -760,7 +681,7 @@
 
         <!-- Page 7: The Gift -->
         <div class="page">
-            <div class="hidden-rabbit" style="top: 40px; right: 40px;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 40px; right: 40px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'glow')">
                 <img src="house_stella.png" alt="Stella House" class="anim-glow click-glow">
             </div>
@@ -782,7 +703,7 @@
 
         <!-- Page 8: The Legacy -->
         <div class="page">
-            <div class="hidden-rabbit" style="top: 200px; left: 10%;" onclick="foundRabbit(this)">🐰</div>
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 200px; left: 10%;" onclick="foundRabbit(this)">
             <div class="illustration">
                 <div class="illustration-group">
                     <img src="worner.png" alt="Sir Worner" class="anim-float page8-knight click-wiggle"
@@ -817,21 +738,21 @@
     <div class="map-modal" id="mapModal">
         <div class="map-content" id="mapContent">
             <div class="map-close" onclick="toggleMap()">×</div>
-            <div class="island-shape malta-main" data-id="malta">
-                Malta
-            </div>
-            <div class="island-shape senglea-peninsula" data-id="senglea" onclick="zoomMap('senglea')">
-                <span class="senglea-label">Senglea</span>
-                <div class="star-marker" style="top: 20px; left: 80px;">⭐</div>
+            <img src="map_malta.png" class="map-base" alt="Map of Malta 1565">
+
+            <!-- Markers based on the image being centered -->
+            <div class="map-marker" style="top: 50%; left: 50%;" onclick="zoomMap('senglea')">
+                <div class="marker-icon">⭐</div>
+                <span class="marker-label">Senglea</span>
             </div>
 
-            <div class="pirate-ship-icon" style="top: 10%; left: 10%;">🏴‍☠️</div>
-            <div class="pirate-ship-icon" style="bottom: 20%; right: 10%; animation-delay: 1s;">⛵</div>
-            <div class="pirate-ship-icon" style="top: 50%; right: 5%; animation-delay: 2s;">🏴‍☠️</div>
+            <div class="pirate-ship-icon" style="top: 20%; left: 20%;">🏴‍☠️</div>
+            <div class="pirate-ship-icon" style="bottom: 25%; right: 25%; animation-delay: 1s;">⛵</div>
+            <div class="pirate-ship-icon" style="top: 40%; right: 15%; animation-delay: 2s;">🏴‍☠️</div>
 
             <div
-                style="position: absolute; bottom: 20px; left: 20px; color: white; font-family: 'Patrick Hand'; font-size: 20px; background: rgba(0,0,0,0.5); padding: 10px;">
-                Drag to explore • Click Senglea to zoom
+                style="position: absolute; bottom: 20px; left: 20px; color: white; font-family: 'Patrick Hand'; font-size: 20px; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">
+                Explore the Grand Harbour of 1565!
             </div>
         </div>
     </div>
@@ -902,8 +823,7 @@
 
         function zoomMap(location) {
             if (location === 'senglea') {
-                alert("Zooming into Senglea! Here is where Sir Wallace Worner defended number 38!");
-                // Simple interaction for now
+                alert("This is Senglea! The home of Stella and the heart of the defense!");
             }
         }
 
