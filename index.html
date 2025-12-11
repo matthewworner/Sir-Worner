@@ -4,132 +4,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wally Worner and the Siege of Senglea</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <title>Wally Worner and the Siege of Malta</title>
+    <!-- Premium Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Chewy&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Patrick Hand', cursive, sans-serif;
-            background: #2c1810;
-            /* Dark wood/leather background */
-            background-image:
-                radial-gradient(circle at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%),
-                repeating-linear-gradient(45deg, #3e2723 0, #3e2723 10px, #2c1810 10px, #2c1810 20px);
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: #fdf6e3;
+            /* Warm parchment */
+            font-family: 'Gentium Book Plus', serif;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            perspective: 2000px;
+            height: 100vh;
+            color: #2c1810;
         }
 
+        /* Book Container */
         .book-container {
-            width: 90vw;
-            max-width: 1200px;
-            height: 90vh;
-            background: #f4e4bc;
-            /* Parchment */
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-            border-radius: 5px 20px 20px 5px;
-            box-shadow:
-                inset 20px 0 50px rgba(0, 0, 0, 0.1),
-                /* Spine shadow */
-                20px 20px 30px rgba(0, 0, 0, 0.5),
-                /* Drop shadow */
-                0 0 0 10px #5d4037;
-            /* Leather cover border */
-            border-left: 60px solid #3e2723;
-            /* Spine */
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            max-width: 1000px;
+            /* Constrain max width for desktop */
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'), linear-gradient(to right, #e8dcb9 0%, #fdf6e3 5%, #fdf6e3 95%, #e8dcb9 100%);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), inset 0 0 100px rgba(93, 64, 55, 0.1);
             position: relative;
             overflow: hidden;
+            border-left: 15px solid #5d4037;
+            /* Spine */
+            border-right: 5px solid #d7ccc8;
         }
 
-        /* Spine detail */
-        .book-container::before {
-            content: '';
-            position: absolute;
-            left: -55px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 5px 0 0 rgba(0, 0, 0, 0.1);
-        }
-
-        /* Page Border Design */
-        .book-container::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            bottom: 10px;
-            left: 10px;
-            border: 2px solid rgba(139, 69, 19, 0.2);
-            pointer-events: none;
-            z-index: 1;
-        }
-
+        /* Pages */
         .page {
-            flex: 1;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
             display: none;
             flex-direction: column;
-            padding: 40px;
-            padding-bottom: 100px;
-            position: relative;
-            animation: pageFlip 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-            min-height: 0;
-            gap: 20px;
-            transform-origin: left center;
+            padding: 40px 60px 100px 60px;
+            animation: fadeIn 0.8s ease-in-out;
+            background: transparent;
         }
 
-        /* Cover Page Styling */
-        .page.cover-page {
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Chewy', cursive;
+            color: #b71c1c;
+            /* Deep red for titles */
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 22px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        strong {
+            color: #b71c1c;
+        }
+
+        em {
+            color: #1a237e;
+            /* Navy blue for emphasis */
+            font-weight: bold;
+        }
+
+        /* Illustrations */
+        .illustration {
+            flex-grow: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .illustration img {
+            max-height: 45vh;
+            /* Responsive height */
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Interactive Elements */
+        .hidden-rabbit {
+            position: absolute;
+            width: 50px;
+            opacity: 0.8;
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 100;
+        }
+
+        .hidden-rabbit:hover {
+            transform: scale(1.2) rotate(-10deg);
+        }
+
+        .hidden-rabbit.found {
+            transform: scale(3) rotate(360deg);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 1s ease-out;
+        }
+
+        /* Animations */
+        .anim-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .anim-shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        .anim-glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px gold);
+            }
+
+            to {
+                filter: drop-shadow(0 0 20px gold);
+            }
+        }
+
+        .anim-sail {
+            animation: sail 4s linear infinite alternate;
+        }
+
+        @keyframes sail {
+            from {
+                transform: rotate(-5deg);
+            }
+
+            to {
+                transform: rotate(5deg);
+            }
+        }
+
+        .anim-battle {
+            animation: battle 0.2s infinite;
+        }
+
+        @keyframes battle {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(2px, 2px);
+            }
+
+            50% {
+                transform: translate(-2px, 2px);
+            }
+
+            75% {
+                transform: translate(-2px, -2px);
+            }
+
+            100% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .click-wiggle:active {
+            animation: wiggle 0.5s linear;
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            7% {
+                transform: rotateZ(0);
+            }
+
+            15% {
+                transform: rotateZ(-15deg);
+            }
+
+            20% {
+                transform: rotateZ(10deg);
+            }
+
+            25% {
+                transform: rotateZ(-10deg);
+            }
+
+            30% {
+                transform: rotateZ(6deg);
+            }
+
+            35% {
+                transform: rotateZ(-4deg);
+            }
+
+            40%,
+            100% {
+                transform: rotateZ(0);
+            }
+        }
+
+        .click-glow:active {
+            filter: brightness(1.5) drop-shadow(0 0 20px yellow);
+            transition: 0.1s;
+        }
+
+        .popped {
+            animation: popScale 0.3s ease-out forwards;
+        }
+
+        @keyframes popScale {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 10;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-family: 'Chewy', cursive;
+            font-size: 24px;
+            color: white;
+            background: #b71c1c;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #7f0000;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #7f0000;
+        }
+
+        button:disabled {
+            background: #ccc;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .icon-btn {
+            padding: 15px;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            background: #f9a825;
+            /* Gold */
+            box-shadow: 0 4px 0 #c17900;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #5d4037;
+            font-weight: bold;
+        }
+
+        /* Cover specific */
+        .cover-page {
             text-align: center;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(244, 228, 188, 0) 70%);
+            background-image: radial-gradient(circle at center, #fff8e1 0%, #fdf6e3 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .cover-title {
-            font-family: 'Chewy', cursive;
-            font-size: 50px;
-            color: #800000;
-            text-shadow: 3px 3px 0px rgba(255, 215, 0, 0.6);
-            margin-bottom: 20px;
-            margin-top: 60px;
-            /* Increased top margin greatly to prevent cutoff */
-            padding-top: 20px;
+            font-size: 80px;
+            color: #b71c1c;
+            margin: 0;
             line-height: 1.1;
-            z-index: 10;
+            text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
         }
 
         .cover-collage {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 450px;
+            /* Specific height for cover */
+            margin: 20px 0;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .cover-main-img {
-            height: 350px;
-            z-index: 5;
+            max-height: 400px;
+            /* Larger hero image */
+            z-index: 2;
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-            transition: transform 0.3s;
-        }
-
-        .cover-main-img:hover {
-            transform: scale(1.05);
         }
 
         .cover-bg-img {
@@ -139,30 +432,17 @@
         }
 
         .cover-decoration {
-            font-family: 'Patrick Hand';
-            font-size: 24px;
-            color: #5d4037;
+            font-size: 28px;
+            font-style: italic;
+            color: #555;
             margin-top: 20px;
         }
 
         .start-btn {
-            margin-top: 30px;
             font-size: 32px;
-            padding: 15px 40px;
-            background: #b71c1c;
-            color: #fff;
-            box-shadow: 0 6px 0 #7f0000;
+            padding: 20px 60px;
+            margin-top: 30px;
             animation: pulse 2s infinite;
-        }
-
-        .start-btn:hover {
-            background: #d32f2f;
-            box-shadow: 0 8px 0 #7f0000;
-        }
-
-        .start-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 0 #7f0000;
         }
 
         @keyframes pulse {
@@ -179,554 +459,144 @@
             }
         }
 
-        .page.active {
-            display: flex;
-        }
-
-        @keyframes pageFlip {
-            from {
-                opacity: 0;
-                transform: rotateY(-30deg) scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: rotateY(0) scale(1);
-            }
-        }
-
-        .illustration {
-            width: 100%;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-bottom: 0;
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            box-shadow: inset 0 0 20px rgba(139, 69, 19, 0.1), 0 0 0 5px rgba(255, 255, 255, 0.4);
-            padding: 10px;
-            cursor: pointer;
-            /* Interaction hint */
-        }
-
-        .illustration img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-            transition: transform 0.3s ease;
-        }
-
-        /* Interactive hover effects */
-        .illustration img:hover {
-            transform: scale(1.02);
-            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
-        }
-
-        .text-content {
-            width: 100%;
-            height: auto;
-            overflow-y: visible;
-            min-height: 0;
-            padding: 25px;
-            background: transparent;
-            font-size: 20px;
-            line-height: 1.8;
-            color: #2c1810;
-            /* Darker brown for text */
-            position: relative;
-        }
-
-        /* Drop Cap */
-        /* Drop Cap - Only applied to the FIRST paragraph of the PAGE, but NOT inside special containers like teaser-text */
-        .text-content>p:first-of-type::first-letter {
-            font-family: 'Chewy', cursive;
-            font-size: 3.5em;
-            float: left;
-            line-height: 0.8;
-            margin-right: 10px;
-            color: #800000;
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-family: 'Chewy', cursive;
-            color: #800000;
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 42px;
-            text-shadow: 1px 1px 0px rgba(255, 215, 0, 0.5);
-            letter-spacing: 1px;
-            margin-top: 0;
-            border-bottom: 2px solid rgba(128, 0, 0, 0.2);
-            padding-bottom: 10px;
-        }
-
-        /* Controls */
-        .controls {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 12px 25px;
-            background: rgba(62, 39, 35, 0.95);
-            border-radius: 50px;
-            border: 3px solid #d7ccc8;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            width: auto;
-        }
-
-        button {
-            padding: 10px 25px;
-            font-size: 20px;
-            font-family: 'Chewy', cursive;
-            background: #f4e4bc;
-            color: #3e2723;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 4px 0 #8d6e63;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 #8d6e63;
-            background: #fff;
-        }
-
-        button:active {
-            transform: translateY(2px);
-            box-shadow: 0 0 0 #8d6e63;
-        }
-
-        button.icon-btn {
-            padding: 10px 15px;
-            font-size: 22px;
-        }
-
-        /* Map Modal */
-        .map-modal,
-        .victory-modal {
+        /* Modals */
+        .victory-modal,
+        .map-modal {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
-            animation: fadeIn 0.3s;
+            z-index: 200;
         }
 
-        /* Victory Modal Specifics */
-        .victory-content {
-            background: #fff;
+        .victory-content,
+        .map-content {
+            background: #fff8e1;
             padding: 40px;
             border-radius: 20px;
             text-align: center;
-            border: 10px solid #FFD700;
-            max-width: 500px;
-            font-family: 'Chewy';
-            color: #3e2723;
-            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            border: 10px solid #eda000;
+            box-shadow: 0 0 50px gold;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            max-width: 90%;
         }
 
-        .victory-content h2 {
-            font-size: 48px;
-            color: #b71c1c;
-            margin-bottom: 20px;
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .victory-rabbit {
             width: 150px;
             margin-bottom: 20px;
-            animation: bounce 2s infinite;
+            animation: bounce 1s infinite alternate;
         }
 
-        .map-content {
-            width: 85%;
-            max-width: 900px;
-            height: 75vh;
-            background: #a2d2df;
-            border: 15px solid #5d4037;
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        .map-base {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #5d4037;
             border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-            cursor: grab;
-        }
-
-        /* The styles for the map image */
-        .map-content img.map-base {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         .close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background: #b71c1c;
-            color: white;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 10px;
+            right: 10px;
+            font-size: 40px;
+            color: #5d4037;
             cursor: pointer;
-            border: 3px solid white;
-            font-family: 'Chewy', cursive;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            line-height: 0.5;
         }
 
+        /* Map Markers */
         .map-marker {
             position: absolute;
             cursor: pointer;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
             transform: translate(-50%, -50%);
-            transition: transform 0.2s;
-            z-index: 10;
         }
 
-        .map-marker:hover {
-            transform: translate(-50%, -50%) scale(1.2);
+        .map-marker:hover .marker-icon {
+            transform: scale(1.5);
         }
 
         .marker-icon {
             font-size: 40px;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.5));
+            transition: transform 0.2s;
         }
 
         .marker-label {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-family: 'Chewy';
-            color: #3e2723;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            font-family: sans-serif;
+            font-size: 12px;
             white-space: nowrap;
-            border: 1px solid #5d4037;
+            margin-top: 5px;
+            opacity: 0;
             pointer-events: none;
-            font-size: 16px;
+            transition: opacity 0.2s;
+        }
+
+        .map-marker:hover .marker-label {
+            opacity: 1;
         }
 
         .pirate-ship-icon {
             position: absolute;
             font-size: 50px;
-            animation: sailShip 8s linear infinite alternate;
-            cursor: pointer;
-            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
-            user-select: none;
-            z-index: 5;
+            animation: sailAside 5s linear infinite alternate;
         }
 
-        /* Interactive Elements Overlay */
+        @keyframes sailAside {
+            from {
+                transform: translateX(0) rotate(-5deg);
+            }
+
+            to {
+                transform: translateX(20px) rotate(5deg);
+            }
+        }
+
+        /* Interactive Items Overlay */
         .interactive-overlay {
             position: absolute;
             cursor: pointer;
-            font-size: 40px;
-            z-index: 15;
+            z-index: 50;
             transition: transform 0.2s;
-            filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
         }
 
         .interactive-overlay:hover {
             transform: scale(1.2);
         }
 
-        .interactive-overlay:active {
-            transform: scale(0.9);
-        }
-
-        .interactive-overlay.popped {
-            animation: pop 0.4s ease-out;
-        }
-
-        @keyframes pop {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.4);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes sailShip {
-            0% {
-                transform: translate(0, 0) rotate(5deg);
-            }
-
-            100% {
-                transform: translate(30px, 10px) rotate(-5deg);
-            }
-        }
-
-        /* Improved Rabbit Game UI */
-        .hidden-rabbit {
-            position: absolute;
-            width: 60px;
-            height: auto;
-            opacity: 0.9;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 20;
-            /* Higher z-index to be clickable */
-            filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
-        }
-
-        .hidden-rabbit:hover {
-            transform: scale(1.1) rotate(0deg) !important;
-            /* Reset rotate to stand up */
-            filter: drop-shadow(0 0 10px #FFD700);
-            /* Glow to make it "clear" it's interactive */
-            opacity: 1;
-        }
-
-        .hidden-rabbit.found {
-            animation: rabbitJumpOut 1s forwards;
-            pointer-events: none;
-        }
-
-        @keyframes rabbitJumpOut {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.5) translateY(-50px) rotate(360deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: scale(0) translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        .rabbit-counter-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #f4e4bc;
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: 3px solid #5d4037;
-            font-family: 'Chewy';
-            color: #5d4037;
-            z-index: 150;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            font-size: 24px;
-            transform: rotate(2deg);
-        }
-
-        .rabbit-counter-panel img {
-            width: 40px;
-        }
-
-        .game-tip {
-            position: fixed;
-            top: 90px;
-            right: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 14px;
-            max-width: 200px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 140;
-            display: none;
-            /* Shown by JS initially */
-            animation: pulse 2s infinite;
-        }
-
-        .page-number {
-            position: absolute;
-            bottom: 25px;
-            right: 35px;
-            font-family: 'Chewy';
-            font-size: 20px;
-            color: #5d4037;
-            border: 2px solid #5d4037;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .teaser-text {
-            border-top: 2px dashed #8d6e63;
-            margin-top: 30px;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 18px;
-            color: #5d4037;
-            font-style: italic;
-        }
-
-        /* Animations */
-        .anim-float {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .anim-sail {
-            animation: sail 4s ease-in-out infinite;
-        }
-
-        @keyframes sail {
-
-            0%,
-            100% {
-                transform: rotate(-2deg);
-            }
-
-            50% {
-                transform: rotate(2deg);
-            }
-        }
-
-        .anim-glow {
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                filter: drop-shadow(0 0 5px gold);
-            }
-
-            50% {
-                filter: drop-shadow(0 0 15px gold);
-            }
-        }
-
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .anim-battle {
-            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) infinite;
-        }
-
-        @keyframes shake {
-
-            10%,
-            90% {
-                transform: translate3d(-1px, 0, 0);
-            }
-
-            20%,
-            80% {
-                transform: translate3d(2px, 0, 0);
-            }
-        }
-
-        /* Responsive */
-        @media screen and (min-width: 1025px) {
-            .page {
-                flex-direction: row;
-                gap: 50px;
-                padding: 60px;
-            }
-
-            .cover-page {
-                flex-direction: column !important;
-            }
-
-            .illustration {
-                width: 50%;
-                height: 100%;
-                border: none;
-                box-shadow: none;
-                background: transparent;
-            }
-
-            .text-content {
-                width: 50%;
-                height: 100%;
-                overflow-y: auto;
-                padding-right: 20px;
-                font-size: 24px;
-            }
-
-            .controls {
-                bottom: 30px;
-            }
-
-            .illustration-group {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .page8-knight {
-                width: 50%;
-                display: block !important;
-            }
-
-            .page8-house {
-                width: 70%;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .book-container {
-                border-left: 15px solid #3e2723;
-                width: 100vw;
-                height: 100vh;
-                border-radius: 0;
-            }
-
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
             .page {
                 padding: 20px 20px 100px 20px;
             }
@@ -795,8 +665,9 @@
     <audio id="snd-siren" src="https://assets.mixkit.co/active_storage/sfx/543/543-preview.mp3"></audio>
     <audio id="snd-plane" src="https://assets.mixkit.co/active_storage/sfx/936/936-preview.mp3"></audio>
 
-    <div class="rabbit-counter-panel">
-        <img src="assets/images/rabbit.png" alt="Rabbit"> <span id="rabbit-count">0/8 Found</span>
+    <div class="rabbit-counter-panel"
+        style="position: fixed; top: 10px; right: 20px; z-index: 151; background: #fff8e1; border: 2px solid #5d4037; border-radius: 20px; padding: 5px 15px; font-family: 'Chewy', cursive; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 5px rgba(0,0,0,0.2);">
+        <img src="assets/images/rabbit.png" alt="Rabbit" style="width: 40px;"> <span id="rabbit-count">0/8 Found</span>
     </div>
 
     <div style="position: fixed; top: 20px; left: 20px; z-index: 150;">
@@ -807,7 +678,8 @@
         </select>
     </div>
 
-    <div class="game-tip" id="gameTip">
+    <div class="game-tip" id="gameTip"
+        style="display: none; position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #fff; padding: 15px 30px; border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 160; animation: bounce 2s infinite;">
         <strong>Psst!</strong> Help Wally find the hidden rabbits on each page! 🐰
     </div>
 
@@ -848,216 +720,170 @@
                     <strong>Marco</strong>, <strong>Seraphine</strong>, and <strong>Lola</strong>.
                 </p>
                 <p style="margin-top: 15px;">His family motto was: <em>"Non nobis tantum nati"</em> — "Not born for
-                    ourselves alone."</p>
-                <p style="margin-top: 15px;">This is the story of how Wally and his team helped save Malta and defended
-                    a
-                    special house that would shine like a star through the centuries...</p>
+                    ourselves alone." It meant they lived to help others!</p>
             </div>
             <div class="page-number">1</div>
         </div>
 
         <div class="page book1-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 20px; right: 30px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="bottom: 50px; left: 40px;" onclick="interactFood(this)"
-                title="Maltese Bread">🍞</div>
-            <div class="interactive-overlay" style="bottom: 40px; right: 80px; font-size: 35px;"
-                onclick="interactFood(this)" title="Cheese">🧀</div>
-
-            <div class="illustration" onclick="animateElement(this, 'wiggle')">
-                <img src="assets/images/castle.png" alt="Castle" class="anim-float click-wiggle">
+                style="top: 20px; left: 40px; transform: rotate(-20deg);" onclick="foundRabbit(this)">
+            <div class="illustration" onclick="animateElement(this, 'sails')">
+                <img src="assets/images/castle.png" alt="Fort St Angelo" class="anim-glow"
+                    style="width: 45%; margin-right: 10px;">
+                <img src="assets/images/real_stella/staircase.jpg" alt="Attic Stairs" class="anim-glow"
+                    style="border: 5px solid #fff; width: 45%;">
             </div>
             <div class="text-content">
-                <h1>The Call to Malta</h1>
-                <p>One spring morning, a messenger arrived at Wally Worner's castle with urgent news. The beautiful
-                    island of Malta was in danger! The Ottoman Empire was sailing there with a huge fleet of ships.</p>
-                <p style="margin-top: 15px;"><em>"Malta needs brave knights!"</em> the messenger cried.</p>
-                <p style="margin-top: 15px;">Wally looked at his shield. He looked at Marco, Seraphine, and Lola. He
-                    knew what he had to
-                    do. He packed his favorite cheese, his rusty sword, and said goodbye to his castle.</p>
-                <p style="margin-top: 15px;"><em>"We are coming, Malta!"</em> he shouted.</p>
+                <h1>The Attic Discovery</h1>
+                <p>One sunny morning, Wally was exploring the dusty attic of his home, fittingly called
+                    <strong>"Stella"</strong> (The Star) in the town of Senglea.</p>
+                <p style="margin-top: 15px;">He found an old wooden chest. Inside was a dusty scroll!</p>
+                <p style="margin-top: 15px;">"Look Squires!" he shouted. "It's a map of secret tunnels beneath our
+                    house!"</p>
+                <p style="margin-top: 15px;">The squires Marco and Seraphine gasped. Little Lola just chewed on a toy
+                    shield.</p>
             </div>
             <div class="page-number">2</div>
         </div>
 
         <div class="page book1-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 130px; left: 40px; transform: rotate(5deg); opacity: 0.8;" onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'sail')">
-                <img src="assets/images/ship.png" alt="Ship" class="anim-sail click-wiggle">
+                style="bottom: 120px; right: 50px; transform: rotate(15deg);" onclick="foundRabbit(this)">
+            <div class="illustration" onclick="animateElement(this, 'wiggle')">
+                <img src="assets/images/worner.png?v=2" alt="Wally Training" class="click-wiggle">
             </div>
             <div class="text-content">
-                <h1>The Journey Across the Sea</h1>
-                <p>The voyage across the Mediterranean Sea was the team's first great adventure. Their ship battled
-                    stormy waves that splashed salty water everywhere!</p>
-                <p style="margin-top: 15px;"><em>"Whoosh! Crash!"</em> went the waves.</p>
-                <p style="margin-top: 15px;">They even saw pirates in the distance! But Wally stood tall at the front of
-                    the ship, looking for land. Finally, he saw golden walls shining in the sun. It was the Grand
-                    Harbour of Malta.</p>
-                <p style="margin-top: 15px;">The water was the bluest blue they had ever seen.</p>
+                <h1>Training Day</h1>
+                <p>Before they could explore, they had to train.</p>
+                <p style="margin-top: 15px;"><em>Clang! Clang!</em> went their wooden swords.</p>
+                <p style="margin-top: 15px;">"Good work, Marco!" Wally cheered. "Keep your shield up, Seraphine!"</p>
+                <p style="margin-top: 15px;">They practiced defending the "fortress" (which was actually the kitchen
+                    table). Nanna gave them warm pastizzi for energy.</p>
             </div>
             <div class="page-number">3</div>
         </div>
 
         <div class="page book1-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 120px; right: 30px;"
-                onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="bottom: 60px; right: 100px; font-size: 30px;"
-                onclick="interactFood(this)" title="Sausage">🌭</div>
-            <div class="illustration" onclick="animateElement(this, 'wiggle')">
-                <img src="assets/images/fortress.png" alt="Fortress" class="click-wiggle">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                style="top: 80px; left: 80px; transform: rotate(45deg);" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="bottom: 80px; left: 40px; font-size: 50px;"
+                onclick="fireCannon(this)" title="Fire Cannon!">💣</div>
+            <div class="illustration" onclick="animateElement(this, 'sail')">
+                <img src="assets/images/ship.png" alt="Pirate Ships" class="anim-sail">
             </div>
             <div class="text-content">
-                <h1>Meeting Jean de la Valette</h1>
-                <p>Wally landed in Birgu and met the Grand Master, Jean de la Valette. He was very serious and looked
-                    very strong.</p>
-                <p style="margin-top: 15px;">Jean de la Valette turned to Wally: <em>"Take command of the harbor
-                        post at Senglea. We must protect it at all costs!"</em></p>
-                <p style="margin-top: 15px;">Wally and his squires saluted. <em>"We will not let you down, sir!"</em>
-                </p>
-                <p style="margin-top: 15px;">They marched to Senglea, a peninsula surrounded by water. It felt like
-                    standing
-                    on the deck of a giant stone ship.</p>
+                <h1>The Great Siege Begins!</h1>
+                <p>Suddenly, bells rang out from the church! <em>Ding! Dong! Ding! Dong!</em></p>
+                <p style="margin-top: 15px;">"Pirates!" cried Wally. "Thousands of them!"</p>
+                <p style="margin-top: 15px;">The horizon was filled with red sails. The Ottoman Empire had come to take
+                    their island.</p>
+                <p style="margin-top: 15px;">"To the walls!" shouted Wally. "For Malta! For Stella!"</p>
+                <p style="margin-top: 10px; font-size: 16px; color: #555;">(Tap the bomb to fire the cannons!)</p>
             </div>
             <div class="page-number">4</div>
         </div>
 
         <div class="page book1-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 20px; left: 20px; transform: rotate(15deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="top: 80px; left: 40px;" onclick="interactFood(this)"
-                title="Honey Ring">🥯</div>
-            <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/house_stella.png" alt="Stella House" class="anim-glow click-glow">
+                style="bottom: 50px; left: 20px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="top: 100px; right: 60px; font-size: 50px;"
+                onclick="interactFood(this)" title="Eat Bread">🥖</div>
+            <div class="illustration">
+                <img src="assets/images/real_stella/kitchen.jpg" alt="Kitchen Shelter" class="click-wiggle"
+                    style="border: 5px solid #fff; opacity: 0.9;">
             </div>
-            <div class="interactive-overlay"
-                onclick="showRealPhoto('assets/images/real_stella/window_view.jpg', 'Looking out from Stella in Senglea!')"
-                style="position:absolute; bottom:20px; right:40px; font-size:30px; background:white; padding:5px; border-radius:50%; border:2px solid #5d4037;">
-                📸</div>
             <div class="text-content">
-                <h1>The House Called Stella</h1>
-                <p>That night, Wally Worner explored the streets of Senglea. He walked down Triq il-Kurcifiss—the Street
-                    of the Crucifix. The houses were tall and made of golden stone.</p>
-                <p style="margin-top: 15px;">One house stood out. It was number 38. It felt special. It felt...
-                    warm.</p>
-                <p style="margin-top: 15px;"><em>"This house is like a star,"</em> Wally told Lola. <em>"I will call it
-                        Stella."</em></p>
-                <p style="margin-top: 15px;">He promised then and there to protect this house and all the families
-                    living in Senglea. He knew the big battle was coming soon.</p>
+                <h1>Hungry Defenders</h1>
+                <p>The siege lasted for months. It was hot and scary.</p>
+                <p style="margin-top: 15px;">"I'm hungry," said Lola.</p>
+                <p style="margin-top: 15px;">"We must share," said Wally. He divided their last loaf of bread into four
+                    equal pieces.</p>
+                <p style="margin-top: 15px;"><em>"Non nobis tantum nati,"</em> he reminded them. Even in the darkest
+                    times, kindness was their strongest weapon.</p>
             </div>
             <div class="page-number">5</div>
         </div>
 
         <div class="page book1-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
-            <!-- Interactive Cannons -->
-            <div class="interactive-overlay" style="bottom: 60px; left: 40px; font-size: 50px;"
-                onclick="fireCannon(this)" title="Fire Cannon!">💥</div>
-
-            <div class="illustration" onclick="animateElement(this, 'shake')">
-                <img src="assets/images/battle.png" alt="Battle" class="anim-battle click-wiggle">
+                style="top: 30px; right: 30px; transform: rotate(90deg);" onclick="foundRabbit(this)">
+            <div class="illustration" onclick="animateElement(this, 'glow')">
+                <img src="assets/images/fortress.png" alt="Fortress Walls" class="anim-glow">
             </div>
             <div class="text-content">
-                <h1>The Great Battle for Senglea</h1>
-                <p>Boom! Bang! The Ottoman ships attacked! The Great Siege had begun.</p>
-                <p style="margin-top: 15px;">Cannonballs flew through the air. Pirates tried to climb the walls! But
-                    Wally Worner was ready. Alongside <strong>Marco</strong>, <strong>Seraphine</strong>, and
-                    <strong>Lola</strong>, he stood on the walls of Senglea.
-                </p>
-                <p style="margin-top: 15px;"><em>"For Malta! For Stella!"</em> they cheered.</p>
-                <p style="margin-top: 15px;">They helped the soldiers. They carried water to the thirsty. They were
-                    everywhere
-                    at once! The enemy saw the brave team and got scared. <em>"Run away!"</em> they shouted.</p>
+                <h1>Holding the Line</h1>
+                <p>The pirates attacked again and again. BOOM! CRASH!</p>
+                <p style="margin-top: 15px;">But the walls of Senglea held firm. Wally and his squires threw stones and
+                    boiling water (from the laundry) to drive them back.</p>
+                <p style="margin-top: 15px;">"They shall not pass!" roared Wally.</p>
             </div>
             <div class="page-number">6</div>
         </div>
 
         <div class="page book1-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 30px; left: 50px;"
-                onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="top: 120px; left: 60px; font-size: 45px;"
-                onclick="interactFood(this)" title="Rabbit Stew">🥘</div>
-            <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/real_stella/kitchen.jpg?v=1" alt="Stella Kitchen" class="anim-glow click-glow"
-                    style="border: 5px solid #FFD700; border-radius: 10px; width: 80%;">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                style="bottom: 60px; right: 60px; transform: rotate(-10deg);" onclick="foundRabbit(this)">
+            <div class="interactive-overlay"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 80px;"
+                onclick="playSound('yay')" title="Victory!">🏆</div>
+            <div class="illustration" onclick="animateElement(this, 'shake')">
+                <img src="assets/images/map_malta.png" alt="Victory Map" class="click-wiggle">
             </div>
             <div class="text-content">
-                <h1>Stella - The Star</h1>
-                <p>After months of fighting, the Great Siege was over! The Ottomans sailed away. Malta had won!</p>
-                <p style="margin-top: 15px;">Jean de la Valette raised his cup: <em>"To Wally Worner and his friends,
-                        the Guardians of
-                        Senglea!"</em></p>
-                <p style="margin-top: 15px;">As a reward for their bravery, the Grand Master gave Wally the keys to
-                    house
-                    number 38.</p>
-                <p style="margin-top: 15px;">Wally, Marco, Seraphine, and Lola held a big feast in the kitchen. They ate
-                    delicious rabbit stew
-                    (<em>stuffat tal-fenek</em>) and celebrated. The house of Stella was safe.</p>
-                <p style="font-size: 16px; color: #555; text-align: center; margin-top: 10px;">(This is the REAL kitchen
-                    of Stella in the picture!)</p>
+                <h1>Victory!</h1>
+                <p>Finally, on the 8th of September, the pirate ships turned around and sailed away.</p>
+                <p style="margin-top: 15px;">"Hooray!" cheered the people of Malta.</p>
+                <p style="margin-top: 15px;">"We did it!" hugged Seraphine. "We saved Stella!"</p>
+                <p style="margin-top: 15px;">The Grand Master gave Wally a medal. "You are a true hero, Sir Worner."</p>
             </div>
             <div class="page-number">7</div>
         </div>
 
         <div class="page book1-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 20px; right: 20px;"
-                onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                style="top: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
             <div class="illustration">
                 <div class="illustration-group">
-                    <img src="assets/images/worner.png?v=2" alt="Wally Worner"
-                        class="anim-float page8-knight click-wiggle" onclick="animateElement(this, 'wiggle')">
-                    <img src="assets/images/house_stella.png" alt="Stella House" class="page8-house click-glow"
-                        onclick="animateElement(this, 'glow')">
+                    <img src="assets/images/worner.png?v=2" alt="Knight Wally" class="page8-knight click-wiggle">
+                    <img src="assets/images/real_stella/bedroom.jpg" alt="Real Stella Bedroom"
+                        class="page8-house click-glow" style="border: 5px solid white; width: 60%; height: auto;">
                 </div>
             </div>
             <div class="text-content">
-                <h1>The Legacy Lives On</h1>
-                <p>The siege continued, but Malta was saved!</p>
-                <p style="margin-top: 15px;">Wally Worner made Stella his home with his family. He restored its
-                    battle-damaged walls,
-                    planted flowers, and built a rabbit hutch in the courtyard.</p>
-                <p style="margin-top: 15px;">Years passed, then decades, then centuries. Stella remained, passed down
-                    through generations. Each generation added their stories, but never forgot the brave knight and his
-                    squires who
-                    defended it.</p>
-                <p style="margin-top: 15px;">And the story doesn't end here... nearly 400 years later, another Wally
-                    Worner would live in this very same house...</p>
-
-                <div class="teaser-text">
-                    <p><strong>NOW AVAILABLE!</strong></p>
-                    <p>Switch books to read:<br>"Wally Worner's Grandson and the Siege of Malta 1940-1943"</p>
-                </div>
+                <h1>The Legacy</h1>
+                <p>Wally Worner grew old and happy in the house called Stella.</p>
+                <p style="margin-top: 15px;">He taught his children and grandchildren to always be brave and kind.</p>
+                <p style="margin-top: 15px;">And to this day, if you visit 38 Triq il-Kurcifiss in Senglea, you can
+                    still see the house that Wally defended.</p>
+                <p style="font-size: 16px; color: #555; text-align: center; margin-top: 10px;">(That's the real bedroom
+                    of Stella in the photo!)</p>
             </div>
             <div class="page-number">8</div>
         </div>
 
 
-        <!-- BOOK 2 PAGES (WWII) -->
+        <!-- BOOK 2 PAGES (WWII - FULL STORY) -->
         <div class="page cover-page book2-page">
             <h1 class="cover-title" style="color: #1a237e; text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.6);">Wally
                 Worner<br>and<br>Fortress Malta</h1>
-
             <div class="cover-collage">
                 <img src="assets/images/spitfire.png" class="cover-bg-img"
-                    style="left: 10%; top: 20%; transform: rotate(-10deg); width: 150px; filter: grayscale(100%) sepa(0.5);">
+                    style="left: 10%; top: 20%; transform: rotate(-10deg); width: 150px; filter: grayscale(100%) sepia(0.5);">
                 <img src="assets/images/stella_interior.png" class="cover-bg-img"
                     style="right: 15%; top: 30%; transform: rotate(10deg); width: 200px; border: 5px solid white; box-shadow: 0 5px 10px rgba(0,0,0,0.3);">
-
-                <!-- Young Wally for Book 2 Cover -->
                 <img src="assets/images/young_wally.png" alt="Wally Worner Jr." class="cover-main-img"
                     style="filter: sepia(0.3);">
             </div>
-
-            <p class="cover-decoration" style="color: #1a237e;">A Story of 1940, Spitfires, and the George Cross</p>
-
+            <p class="cover-decoration" style="color: #1a237e;">A Story of 1940, Courage, and the George Cross</p>
             <button class="start-btn" style="background: #1a237e; box-shadow: 0 6px 0 #0d47a1;"
                 onclick="nextPage()">Start Adventure</button>
         </div>
 
+        <!-- PAGE 1: PROLOGUE -->
         <div class="page book2-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 85px; left: 30px; transform: rotate(10deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 85px; left: 30px;"
+                onclick="foundRabbit(this)">
             <div class="illustration">
                 <img src="assets/images/real_stella/staircase.jpg" alt="Attic Stairs" class="anim-glow"
                     style="border: 5px solid #fff; width: 45%; float: left; margin-right: 10px;">
@@ -1066,156 +892,180 @@
             </div>
             <div class="text-content">
                 <h1>Discovery in the Attic</h1>
-                <p>It was the year 1940. In the house called Stella at 38 Triq il-Kurcifiss, a young boy named Wally
-                    Worner Jr. was exploring the attic.</p>
-                <p style="margin-top: 15px;">It was dusty and full of old trunks. In the corner, hidden under a blanket,
-                    he found something amazing. A shield! It was yellow with a red stripe and six red roses.</p>
-                <p style="margin-top: 15px;"><em>"Non nobis tantum nati"</em> he read on the scroll. "Not born for
-                    ourselves alone."</p>
-                <p style="margin-top: 15px;">"That was your ancestor's," his Nanna said. "Sir Wally Worner. He defended
-                    this house 400 years ago. Now, it looks like trouble is coming to Malta again..."</p>
+                <p>June 1940. Twelve-year-old Wally Worner climbed into the dusty attic of Stella at 38 Triq
+                    il-Kurcifiss.</p>
+                <p style="margin-top: 15px;">Hidden behind a chest, he found an ancient shield! Yellow with a red stripe
+                    and six red roses. The motto read: <em>"Non nobis tantum nati."</em></p>
+                <p style="margin-top: 15px;">"That belonged to Sir Wally Worner," his grandmother said. "He defended
+                    this house in 1565. It means 'We are not born for ourselves alone.'"</p>
+                <p style="margin-top: 15px;">Suddenly, a siren wailed. <em>"Wooooooo!"</em> The war had come to Malta.
+                </p>
             </div>
             <div class="page-number">1</div>
         </div>
 
+        <!-- PAGE 2: CHAPTER 1 -->
         <div class="page book2-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 20px; right: 30px;"
                 onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'shake')">
-                <img src="assets/images/mary_ellul.png" alt="Mary Ellul" class="anim-float"
-                    style="width: 45%; float: left; margin-right: 10px;">
-                <img src="assets/images/battle.png" alt="Air Raid" class="anim-float"
-                    style="filter: grayscale(0.5); width: 45%;">
+                <img src="assets/images/battle.png" alt="Air Raid" class="anim-float" style="filter: grayscale(0.2);">
             </div>
             <div class="text-content">
-                <h1>The Sky Turns Dark</h1>
-                <p>June 1940. The sirens wailed! <em>"Wooooooo!"</em></p>
-                <p style="margin-top: 15px;">Wally ran to the roof. <strong>Mary Ellul</strong>, the toughest Air Raid
-                    Warden in Senglea, blew her whistle. "Get down, Wally!" she shouted.</p>
-                <p style="margin-top: 15px;">Mary was amazing. People said she was strong enough to lift heavy beams off
-                    trapped neighbors. With wardens like Mary guarding the streets, Wally felt a little safer.</p>
+                <h1>The First Bombs Fall</h1>
+                <p>Italian bombers appeared over Grand Harbour. Wally stood on the roof, watching three tiny biplanes
+                    rise to meet them.</p>
+                <p style="margin-top: 15px;">"Faith, Hope, and Charity," his father pointed. "Three old planes against
+                    the whole enemy air force!"</p>
+                <p style="margin-top: 15px;">The little Gladiators fought like angry wasps. Wally touched the image of
+                    the shield in his pocket. "If the first Wally defended Stella with a sword, I can defend it now."
+                </p>
             </div>
             <div class="page-number">2</div>
         </div>
 
+        <!-- PAGE 3: CHAPTER 2 -->
         <div class="page book2-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 120px; left: 40px;"
                 onclick="foundRabbit(this)">
             <div class="illustration">
-                <!-- Using the real Kitchen photo for the Shelter/Food context -->
                 <img src="assets/images/real_stella/kitchen.jpg" alt="Kitchen Shelter" class="click-wiggle"
                     style="border: 5px solid #fff; opacity: 0.9;">
             </div>
             <div class="text-content">
-                <h1>Life Underground</h1>
-                <p>Bombs began to fall every day. The Worner family had to move into the shelter.</p>
-                <p style="margin-top: 15px;">It was dark, but Nanna held up a newspaper. "Listen to this! <strong>Mabel
-                        Strickland</strong> wrote in <em>The Times of Malta</em> that we will never give up!"</p>
-                <p style="margin-top: 15px;">"Mabel never misses a day," Papa said. "Even when bombs hit her printing
-                    press, she keeps writing to give us hope."</p>
-                <p style="margin-top: 15px;">Wally smiled. With Mary protecting the streets and Mabel protecting the
-                    truth, Malta was strong.</p>
+                <h1>Life Under Siege</h1>
+                <p>Senglea carved deep shelters into the rock. There, Wally met Laurence Mizzi, a boy who looked scared
+                    and hungry.</p>
+                <p style="margin-top: 15px;">"I suffer more from hunger than bombs," Laurence whispered.</p>
+                <p style="margin-top: 15px;">Wally broke his last piece of bread in half. "Here. We share everything.
+                    That's what friends do."</p>
+                <p style="margin-top: 15px;">Grandmother made stew from their last rabbit. "This gave the first Wally
+                    strength," she said. "It will give us strength too."</p>
             </div>
             <div class="page-number">3</div>
         </div>
 
+        <!-- PAGE 4: CHAPTER 3 -->
         <div class="page book2-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 30px; left: 20px;"
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 50px; left: 20px;"
                 onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="bottom: 60px; right: 40px; font-size: 60px;"
-                onclick="playSound('plane')" title="Spitfire Flyby!">✈️</div>
-            <div class="illustration" onclick="animateElement(this, 'sail')">
-                <img src="assets/images/spitfire.png" alt="Spitfire Delivery" class="anim-sail"
-                    style="filter: sepia(0.5);">
+            <div class="illustration">
+                <img src="assets/images/mary_ellul.png" alt="Mary Ellul" class="anim-glow"
+                    style="width: 50%; margin: 0 auto; display: block;">
             </div>
             <div class="text-content">
-                <h1>The Spitfires & Sir Keith Park</h1>
-                <p>April 1942. Things looked bad. But then, a roar filled the sky! <em>"VROOOOM!"</em></p>
-                <p style="margin-top: 15px;">"Look!" Wally shouted. "Spitfires!"</p>
-                <p style="margin-top: 15px;">A tall man watched them land. It was <strong>Sir Keith Park</strong> from
-                    New Zealand! He commanded all of Malta's air defenses.</p>
-                <p style="margin-top: 15px;">"Good on ya, mates!" he probably said in his Kiwi accent. Under his
-                    command, the Spitfires fought back. Pilots from Australia, New Zealand, Canada, and Britain flew
-                    together to save the island.</p>
+                <h1>Heroes of Malta</h1>
+                <p>"Not all heroes carry guns," Grandmother told the children.</p>
+                <p style="margin-top: 15px;">She spoke of <strong>Mary Ellul</strong> ("Mary the Man"), the Air Raid
+                    Warden who lifted heavy beams to save neighbors. Of <strong>Mabel Strickland</strong>, who printed
+                    <em>The Times of Malta</em> every day despite the bombs.</p>
+                <p style="margin-top: 15px;">"And <strong>Henrietta Chevalier</strong>," she whispered. "Hiding refugees
+                    in Rome right under the enemy's nose. They live our motto: Not born for ourselves alone."</p>
             </div>
             <div class="page-number">4</div>
         </div>
 
+        <!-- PAGE 5: CHAPTER 4 -->
         <div class="page book2-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 50px; right: 50px;"
                 onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'shake')">
-                <img src="assets/images/salvo.png" alt="Salvo the Carpenter" class="anim-glow"
-                    style="width: 40%; float: left; margin-right: 10px;">
-                <img src="assets/images/real_stella/window_view.jpg" alt="Window View" class="anim-battle"
-                    style="border: 5px solid white; width: 55%;">
+            <div class="interactive-overlay" style="bottom: 60px; right: 40px; font-size: 60px;"
+                onclick="playSound('plane')" title="Spitfire Flyby!">✈️</div>
+            <div class="illustration" onclick="animateElement(this, 'sail')">
+                <img src="assets/images/spitfire.png" alt="Spitfire" class="anim-sail">
             </div>
             <div class="text-content">
-                <h1>Stella Under Fire</h1>
-                <p>One terrible afternoon, a bomb whistled down. <em>"Eeeeeeeee-BOOM!"</em></p>
-                <p style="margin-top: 15px;">It landed right on Triq il-Kurcifiss! Dust and smoke filled the air. Wally
-                    coughed and covered his eyes.</p>
-                <p style="margin-top: 15px;">When the dust settled, he looked up. House number 38 was hurt. Windows were
-                    blown out.</p>
-                <p style="margin-top: 15px;">But then, a neighbor named <strong>Salvo</strong> came with his toolbox. He
-                    was a master carpenter. "This house is special," Salvo said. "I will make it beautiful again."</p>
-                <p style="margin-top: 15px;">Salvo carefully crafted new wooden window frames. "My gift to Stella," he
-                    smiled. He showed Wally that serving your community can be as brave as fighting.</p>
+                <h1>The Falcon Arrives</h1>
+                <p>April 1942. A roar filled the sky! <strong>Spitfires!</strong></p>
+                <p style="margin-top: 15px;">They were led by <strong>Sir Keith Park</strong>, a tall New Zealander who
+                    commanded the defense. Pilots from Canada, Australia, and New Zealand flew to save Malta.</p>
+                <p style="margin-top: 15px;">Wally met a Canadian pilot named <strong>Buzz Beurling</strong>. "You spot
+                    'em, kid, I'll shoot 'em," Buzz grinned. The Falcon of Malta had arrived!</p>
             </div>
             <div class="page-number">5</div>
         </div>
 
+        <!-- PAGE 6: CHAPTER 5 -->
         <div class="page book2-page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 50px; right: 20px;"
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 30px; right: 40px;"
                 onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="top: 100px; left: 40px; font-size: 50px;" onclick="playSound('yay')"
-                title="Cheer!">🎖️</div>
             <div class="illustration">
-                <!-- Placeholder for George Cross/Ceremony -->
-                <img src="assets/images/fortress.png" alt="George Cross" class="anim-glow"
-                    style="filter: hue-rotate(180deg);">
+                <img src="assets/images/salvo.png" alt="Salvo" class="anim-glow"
+                    style="width: 45%; float: left; margin-right: 10px;">
+                <img src="assets/images/real_stella/window_view.jpg" alt="Window" class="anim-battle"
+                    style="width: 45%; border: 5px solid white;">
             </div>
             <div class="text-content">
-                <h1>The George Cross</h1>
-                <p>King George VI in England heard about the bravery of the Maltese people. Heroes like
-                    <strong>Henrietta Chevalier</strong>, who risked everything, and ordinary people like Mary and
-                    Mabel.
-                </p>
-                <p style="margin-top: 15px;">He decided to award the George Cross medal to <strong>the whole
-                        island</strong>!</p>
-                <p style="margin-top: 15px;">"To honour her brave people, I award the George Cross to the Island
-                    Fortress of Malta to bear witness to a heroism and devotion that will long be famous in history."
-                </p>
-                <p style="margin-top: 15px;">Wally pinned a paper cross to his shirt. He was proud to be Maltese.</p>
+                <h1>Stella Under Fire</h1>
+                <p><em>Boom!</em> A bomb landed on Triq il-Kurcifiss. Stella was hurt. Her windows were blown out.</p>
+                <p style="margin-top: 15px;">But neighbors came to help. <strong>Salvo</strong>, a master carpenter,
+                    arrived with his tools. "This house is special," he said.</p>
+                <p style="margin-top: 15px;">He crafted beautiful new timber frames. "This is my way of fighting," Salvo
+                    smiled. "By building." Wally realized that kindness was a weapon too.</p>
             </div>
             <div class="page-number">6</div>
         </div>
 
+        <!-- PAGE 7: CHAPTER 6 & 7 -->
+        <div class="page book2-page">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 100px; left: 20px;"
+                onclick="foundRabbit(this)">
+            <div class="illustration" onclick="animateElement(this, 'sail')">
+                <img src="assets/images/ship.png" alt="SS Ohio" class="anim-sail" style="filter: sepia(0.6);">
+            </div>
+            <div class="text-content">
+                <h1>Operation Pedestal</h1>
+                <p>Malta was starving. But in August 1942, the broken tanker <strong>SS Ohio</strong> limped into Grand
+                    Harbour, carried by two destroyers. She brought fuel and survival.</p>
+                <p style="margin-top: 15px;">"We made it!" Laurence cheered.</p>
+                <p style="margin-top: 15px;">The tide turned. King George VI awarded the <strong>George Cross</strong>
+                    to the whole island. Wally pinned a paper cross to his shirt, proud to be Maltese.</p>
+            </div>
+            <div class="page-number">7</div>
+        </div>
+
+        <!-- PAGE 8: CHAPTER 8 -->
+        <div class="page book2-page">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 40px; right: 20px;"
+                onclick="foundRabbit(this)">
+            <div class="illustration">
+                <img src="assets/images/stella_interior.png" alt="Stella Interior" class="anim-glow">
+            </div>
+            <div class="text-content">
+                <h1>Stella Still Shines</h1>
+                <p>The war ended. Wally and his father repaired Stella's walls. Salvo returned to finish the beautiful
+                    woodwork.</p>
+                <p style="margin-top: 15px;">Grandmother hung the old shield back on the wall. "Two Wallys," she said.
+                    "Two sieges. One house."</p>
+                <p style="margin-top: 15px;">Wally looked at Laurence. "We did it. We defended Stella. Together."</p>
+            </div>
+            <div class="page-number">8</div>
+        </div>
+
+        <!-- PAGE 9: EPILOGUE -->
         <div class="page book2-page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 20px; left: 20px;"
                 onclick="foundRabbit(this)">
             <div class="illustration">
                 <div class="illustration-group">
-                    <img src="assets/images/young_wally.png" alt="Young Wally 1940" class="page8-knight click-wiggle">
-                    <img src="assets/images/real_stella/bedroom.jpg" alt="Stella Bedroom" class="page8-house click-glow"
+                    <img src="assets/images/young_wally.png" alt="Young Wally" class="page8-knight click-wiggle">
+                    <img src="assets/images/real_stella/bedroom.jpg" alt="Real Bedroom" class="page8-house click-glow"
                         style="border: 5px solid white; width: 60%; height: auto;">
                 </div>
             </div>
             <div class="text-content">
-                <h1>Victory and Peace</h1>
-                <p>Finally, the siege ended. Food ships arrived! Australia and New Zealand celebrated with Malta. The
-                    ANZACs had helped save the island, just as Malta had cared for them in the first war.</p>
-                <p style="margin-top: 15px;">Wally stood in his room, looking at Salvo's beautiful window frames. They
-                    were strong and perfect.</p>
-                <p style="margin-top: 15px;">"Two sieges," he whispered. "Two Wallys. But one house."</p>
-                <p style="margin-top: 15px;">Stella had survived again. And thanks to heroes like Mary, Mabel, Keith
-                    Park, and Salvo, the star would keep shining forever.</p>
+                <h1>The Legacy Continues</h1>
+                <p>Years later, a young boy touched the smooth timber window frames at Stella.</p>
+                <p style="margin-top: 15px;">"Salvo made those," Old Wally told his grandson. "During the war."</p>
+                <p style="margin-top: 15px;">"Real heroism isn't just fighting," Old Wally said. "It's Mary saving
+                    neighbors. Mabel printing truth. Salvo building windows. It's living for others."</p>
+                <p style="margin-top: 15px;">Stella the Star still shines—because love is the strongest stone of all.
+                </p>
                 <p style="font-size: 16px; color: #555; text-align: center; margin-top: 10px;">(You can see the real
-                    bedroom of Stella in the photo!)</p>
+                    bedroom of Stella!)</p>
             </div>
-            <div class="page-number">7</div>
+            <div class="page-number">9</div>
         </div>
-
 
         <div class="controls">
             <button id="prevBtn" onclick="previousPage()">← Previous</button>
@@ -1242,12 +1092,12 @@
                 <div class="marker-label">Fort St. Angelo</div>
             </div>
 
-
-
             <!-- Enemies -->
             <div class="pirate-ship-icon" style="bottom: 20%; left: 10%;" title="Enemy Fleet">⚓</div>
             <div class="pirate-ship-icon" style="bottom: 30%; left: 80%; animation-delay: 2s;" title="Enemy Fleet">⚓
             </div>
+
+            <p style="margin-top: 10px; font-family: 'Chewy'; font-size: 20px;">Use the Map to explore the Siege!</p>
         </div>
     </div>
 
@@ -1266,7 +1116,7 @@
             <div class="close-btn" style="top: -20px; right: -20px;" onclick="closeVictory()">×</div>
             <h2>Rabbit Hero!</h2>
             <img src="assets/images/rabbit.png" class="victory-rabbit" alt="Happy Rabbit">
-            <p style="font-size: 24px;">You found all 8 hidden rabbits!</p>
+            <p style="font-size: 24px;">You found all hidden rabbits!</p>
             <p>The Knights of Malta salute your keen eyes!</p>
         </div>
     </div>
@@ -1277,7 +1127,7 @@
         let totalPages = 0;
         let soundEnabled = true;
         let rabbitCount = 0;
-        const totalRabbits = 8;
+        let totalRabbits = 8; // Default Book 1
 
         // Sound Elements
         const sounds = {
@@ -1301,11 +1151,27 @@
             currentBook = bookName;
             currentPage = 0;
 
+            // Reset Rabbits
+            if (currentBook === 'book2') {
+                totalRabbits = 9;
+            } else {
+                totalRabbits = 8;
+            }
+            rabbitCount = 0;
+            updateRabbitCounter();
+            // Reset rabbit visuals
+            document.querySelectorAll('.found').forEach(el => el.classList.remove('found'));
+            document.getElementById('victoryModal').style.display = 'none';
+
             // Re-query only relevant pages to determine count
             const bookPages = document.querySelectorAll('.' + currentBook + '-page');
             totalPages = bookPages.length;
 
             updateDisplay();
+        }
+
+        function updateRabbitCounter() {
+            document.getElementById('rabbit-count').innerText = rabbitCount + "/" + totalRabbits + " Found";
         }
 
         function updateDisplay() {
@@ -1370,7 +1236,7 @@
 
             element.classList.add('found');
             rabbitCount++;
-            document.getElementById('rabbit-count').innerText = rabbitCount + "/" + totalRabbits + " Found";
+            updateRabbitCounter();
             playSound('pop');
 
             if (rabbitCount === totalRabbits) {
