@@ -224,7 +224,8 @@
         }
 
         /* Map Modal */
-        .map-modal {
+        .map-modal,
+        .victory-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -236,6 +237,32 @@
             align-items: center;
             z-index: 2000;
             animation: fadeIn 0.3s;
+        }
+
+        /* Victory Modal Specifics */
+        .victory-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 10px solid #FFD700;
+            max-width: 500px;
+            font-family: 'Chewy';
+            color: #3e2723;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+            position: relative;
+        }
+
+        .victory-content h2 {
+            font-size: 48px;
+            color: #b71c1c;
+            margin-bottom: 20px;
+        }
+
+        .victory-rabbit {
+            width: 150px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
         }
 
         .map-content {
@@ -259,7 +286,7 @@
             display: block;
         }
 
-        .map-close {
+        .close-btn {
             position: absolute;
             top: 20px;
             right: 20px;
@@ -333,49 +360,85 @@
             }
         }
 
-        /* Hidden Objects - Rabbits */
+        /* Improved Rabbit Game UI */
         .hidden-rabbit {
             position: absolute;
-            width: 70px;
+            width: 60px;
             height: auto;
             opacity: 0.9;
             cursor: pointer;
-            transition: opacity 0.3s;
-            z-index: 10;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+            transition: all 0.3s;
+            z-index: 20;
+            /* Higher z-index to be clickable */
+            filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
         }
 
         .hidden-rabbit:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(0deg) !important;
+            /* Reset rotate to stand up */
+            filter: drop-shadow(0 0 10px #FFD700);
+            /* Glow to make it "clear" it's interactive */
+            opacity: 1;
         }
 
         .hidden-rabbit.found {
-            opacity: 0;
+            animation: rabbitJumpOut 1s forwards;
             pointer-events: none;
-            transform: scale(2) rotate(360deg);
-            transition: all 0.5s;
         }
 
-        .rabbit-counter {
+        @keyframes rabbitJumpOut {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5) translateY(-50px) rotate(360deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0) translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        .rabbit-counter-panel {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px 15px;
-            border-radius: 20px;
-            border: 2px solid #5d4037;
+            background: #f4e4bc;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 3px solid #5d4037;
             font-family: 'Chewy';
             color: #5d4037;
             z-index: 150;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            gap: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 24px;
+            transform: rotate(2deg);
         }
 
-        .rabbit-counter img {
-            width: 30px;
-            height: auto;
+        .rabbit-counter-panel img {
+            width: 40px;
+        }
+
+        .game-tip {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 140;
+            display: none;
+            /* Shown by JS initially */
+            animation: pulse 2s infinite;
         }
 
         .page-number {
@@ -442,6 +505,18 @@
 
             50% {
                 filter: drop-shadow(0 0 15px gold);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
             }
         }
 
@@ -533,6 +608,17 @@
             .page8-knight {
                 display: none;
             }
+
+            .rabbit-counter-panel {
+                padding: 5px 10px;
+                font-size: 18px;
+                top: 10px;
+                right: 10px;
+            }
+
+            .rabbit-counter-panel img {
+                width: 30px;
+            }
         }
 
         .illustration-group {
@@ -549,15 +635,20 @@
 
 <body>
     <audio id="snd-turn" src="https://assets.mixkit.co/active_storage/sfx/2045/2045-preview.mp3"></audio>
+    <audio id="snd-yay" src="https://assets.mixkit.co/active_storage/sfx/1114/1114-preview.mp3"></audio>
 
-    <div class="rabbit-counter">
-        <img src="rabbit.png" alt="Rabbit"> <span id="rabbit-count">0/8</span>
+    <div class="rabbit-counter-panel">
+        <img src="rabbit.png" alt="Rabbit"> <span id="rabbit-count">0/8 Found</span>
+    </div>
+
+    <div class="game-tip" id="gameTip">
+        <strong>Psst!</strong> Help Wally find the hidden rabbits on each page! 🐰
     </div>
 
     <div class="book-container">
         <!-- Page 1: Title -->
         <div class="page active">
-            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 85px; left: 20px; transform: rotate(10deg);"
+            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 85px; left: 30px; transform: rotate(10deg);"
                 onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="worner.png" alt="Wally Worner" class="anim-float click-wiggle">
@@ -578,7 +669,7 @@
 
         <!-- Page 2: The Call -->
         <div class="page">
-            <img src="rabbit.png" class="hidden-rabbit" style="top: 20px; right: 20px; transform: rotate(-5deg);"
+            <img src="rabbit.png" class="hidden-rabbit" style="top: 20px; right: 30px; transform: rotate(-5deg);"
                 onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="castle.png" alt="Castle" class="anim-float click-wiggle">
@@ -602,8 +693,8 @@
 
         <!-- Page 3: The Voyage -->
         <div class="page">
-            <img src="rabbit.png" class="hidden-rabbit" style="top: 140px; left: 40px; opacity: 0.8;"
-                onclick="foundRabbit(this)">
+            <img src="rabbit.png" class="hidden-rabbit"
+                style="top: 130px; left: 40px; transform: rotate(5deg); opacity: 0.8;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'sail')">
                 <img src="ship.png" alt="Ship" class="anim-sail click-wiggle">
             </div>
@@ -624,7 +715,7 @@
 
         <!-- Page 4: Meeting Valette -->
         <div class="page">
-            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 110px; right: 30px;" onclick="foundRabbit(this)">
+            <img src="rabbit.png" class="hidden-rabbit" style="bottom: 120px; right: 30px;" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="fortress.png" alt="Fortress" class="click-wiggle">
             </div>
@@ -742,7 +833,7 @@
     <!-- Map Modal -->
     <div class="map-modal" id="mapModal">
         <div class="map-content" id="mapContent">
-            <div class="map-close" onclick="toggleMap()">×</div>
+            <div class="close-btn" onclick="toggleMap()">×</div>
             <img src="map_malta.png" class="map-base" alt="Map of Malta 1565">
 
             <!-- Markers based on the image being centered -->
@@ -762,11 +853,23 @@
         </div>
     </div>
 
+    <!-- Victory Modal -->
+    <div class="victory-modal" id="victoryModal">
+        <div class="victory-content" id="victoryContent">
+            <div class="close-btn" style="top: -20px; right: -20px;" onclick="closeVictory()">×</div>
+            <h2>Rabbit Hero!</h2>
+            <img src="rabbit.png" class="victory-rabbit" alt="Happy Rabbit">
+            <p style="font-size: 24px;">You found all 8 hidden rabbits!</p>
+            <p>The Knights of Malta salute your keen eyes!</p>
+        </div>
+    </div>
+
     <script>
         let currentPage = 0;
         const pages = document.querySelectorAll('.page');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const victoryModal = document.getElementById('victoryModal');
         let soundEnabled = true;
         let rabbitCount = 0;
 
@@ -779,11 +882,15 @@
 
         function playSound(type) {
             if (!soundEnabled) return;
-            // Placeholder for real sounds. 
-            // In a real app we'd play document.getElementById('snd-' + type).play();
-            // For now, browser might block without user interaction.
-            if (type === 'turn') {
-                const audio = document.getElementById('snd-turn');
+
+            const soundMap = {
+                'turn': 'snd-turn',
+                'yay': 'snd-yay'
+            };
+
+            const audioId = soundMap[type];
+            if (audioId) {
+                const audio = document.getElementById(audioId);
                 if (audio) {
                     audio.currentTime = 0;
                     audio.play().catch(e => console.log("Audio prevent default"));
@@ -832,6 +939,10 @@
             }
         }
 
+        function closeVictory() {
+            victoryModal.style.display = 'none';
+        }
+
         // Animations
         function animateElement(element, type) {
             // Remove class to reset
@@ -842,10 +953,6 @@
             setTimeout(() => {
                 element.classList.remove('clicked');
             }, 1000);
-
-            if (soundEnabled) {
-                // Play specific sound logic here
-            }
         }
 
         // Rabbit Game
@@ -854,14 +961,23 @@
 
             element.classList.add('found');
             rabbitCount++;
-            document.getElementById('rabbit-count').textContent = rabbitCount + "/8";
+            document.getElementById('rabbit-count').textContent = rabbitCount + "/8 Found";
+            playSound('yay');
 
             if (rabbitCount === 8) {
                 setTimeout(() => {
-                    alert("Congratulations! You found all 8 rabbits! The spirit of Malta is with you!");
-                }, 500);
+                    victoryModal.style.display = 'flex';
+                    playSound('yay');
+                }, 1000);
             }
         }
+
+        // Game Tips
+        setTimeout(() => {
+            const tip = document.getElementById('gameTip');
+            tip.style.display = 'block';
+            setTimeout(() => { tip.style.display = 'none'; }, 5000);
+        }, 2000);
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
