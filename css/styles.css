@@ -7,8 +7,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #fdf6e3;
-    /* Warm parchment */
+    background-color: #3e2723;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    /* Wood texture */
     font-family: 'Gentium Book Plus', serif;
     overflow: hidden;
     display: flex;
@@ -20,17 +21,29 @@ body {
 
 /* Book Container */
 .book-container {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     max-width: 1000px;
-    /* Constrain max width for desktop */
-    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'), linear-gradient(to right, #e8dcb9 0%, #fdf6e3 5%, #fdf6e3 95%, #e8dcb9 100%);
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5), inset 0 0 100px rgba(93, 64, 55, 0.1);
+    max-height: 800px;
+    background-color: #fdf6e3;
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    box-shadow:
+        10px 10px 30px rgba(0, 0, 0, 0.5),
+        inset 30px 0 50px rgba(93, 64, 55, 0.3),
+        /* Spine shadow */
+        inset -5px 0 10px rgba(0, 0, 0, 0.1);
+    /* Right edge curvature */
     position: relative;
     overflow: hidden;
-    border-left: 15px solid #5d4037;
+    border-left: 20px solid #5d4037;
     /* Spine */
+    border-radius: 5px 20px 20px 5px;
+    /* Physical book shape */
+    border-top: 2px solid #e0e0e0;
+    border-bottom: 5px solid #d7ccc8;
+    /* Pages thickness at bottom */
     border-right: 5px solid #d7ccc8;
+    /* Pages thickness at right */
 }
 
 /* Pages */
@@ -333,16 +346,18 @@ em {
 }
 
 button {
-    padding: 15px 30px;
+    padding: 15px 40px;
     font-family: 'Chewy', cursive;
-    font-size: 24px;
-    color: white;
-    background: #b71c1c;
-    border: none;
+    font-size: 28px;
+    color: #fff8e1;
+    /* Cream text */
+    background: linear-gradient(to bottom, #d32f2f, #b71c1c);
+    border: 2px solid #8e0000;
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 0 #7f0000;
+    box-shadow: 0 6px 0 #7f0000, 0 10px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.1s;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 button:active {
