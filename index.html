@@ -350,6 +350,42 @@
             z-index: 5;
         }
 
+        /* Interactive Elements Overlay */
+        .interactive-overlay {
+            position: absolute;
+            cursor: pointer;
+            font-size: 40px;
+            z-index: 15;
+            transition: transform 0.2s;
+            filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .interactive-overlay:hover {
+            transform: scale(1.2);
+        }
+
+        .interactive-overlay:active {
+            transform: scale(0.9);
+        }
+
+        .interactive-overlay.popped {
+            animation: pop 0.4s ease-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
         @keyframes sailShip {
             0% {
                 transform: translate(0, 0) rotate(5deg);
@@ -636,6 +672,11 @@
 <body>
     <audio id="snd-turn" src="https://assets.mixkit.co/active_storage/sfx/2045/2045-preview.mp3"></audio>
     <audio id="snd-yay" src="https://assets.mixkit.co/active_storage/sfx/1114/1114-preview.mp3"></audio>
+    <audio id="snd-ocean" src="https://assets.mixkit.co/active_storage/sfx/1188/1188-preview.mp3" loop></audio>
+    <audio id="snd-sword" src="https://assets.mixkit.co/active_storage/sfx/1271/1271-preview.mp3"></audio>
+    <audio id="snd-cannon" src="https://assets.mixkit.co/active_storage/sfx/1703/1703-preview.mp3"></audio>
+    <audio id="snd-bells" src="https://assets.mixkit.co/active_storage/sfx/573/573-preview.mp3"></audio>
+    <audio id="snd-pop" src="https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3"></audio>
 
     <div class="rabbit-counter-panel">
         <img src="rabbit.png" alt="Rabbit"> <span id="rabbit-count">0/8 Found</span>
@@ -671,6 +712,11 @@
         <div class="page">
             <img src="rabbit.png" class="hidden-rabbit" style="top: 20px; right: 30px; transform: rotate(-5deg);"
                 onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="bottom: 50px; left: 40px;" onclick="interactFood(this)"
+                title="Maltese Bread">🍞</div>
+            <div class="interactive-overlay" style="bottom: 60px; left: 80px;" onclick="interactFood(this)"
+                title="Cheese">🧀</div>
+
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="castle.png" alt="Castle" class="anim-float click-wiggle">
             </div>
@@ -716,6 +762,8 @@
         <!-- Page 4: Meeting Valette -->
         <div class="page">
             <img src="rabbit.png" class="hidden-rabbit" style="bottom: 120px; right: 30px;" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="bottom: 60px; right: 100px; font-size: 30px;"
+                onclick="interactFood(this)" title="Sausage">🌭</div>
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="fortress.png" alt="Fortress" class="click-wiggle">
             </div>
@@ -737,6 +785,8 @@
         <div class="page">
             <img src="rabbit.png" class="hidden-rabbit" style="top: 20px; left: 20px; transform: rotate(15deg);"
                 onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="top: 80px; left: 40px;" onclick="interactFood(this)"
+                title="Honey Ring">🥯</div>
             <div class="illustration" onclick="animateElement(this, 'glow')">
                 <img src="house_stella.png" alt="Stella House" class="anim-glow click-glow">
             </div>
@@ -758,6 +808,12 @@
         <div class="page">
             <img src="rabbit.png" class="hidden-rabbit" style="bottom: 20px; left: 50%; transform: translateX(-50%);"
                 onclick="foundRabbit(this)">
+            <!-- Interactive Cannons -->
+            <div class="interactive-overlay" style="bottom: 60px; left: 40px; font-size: 50px;"
+                onclick="fireCannon(this)" title="Fire Cannon!">💣</div>
+            <div class="interactive-overlay" style="bottom: 80px; right: 40px; font-size: 40px;"
+                onclick="fireCannon(this)" title="Fire Cannon!">💥</div>
+
             <div class="illustration" onclick="animateElement(this, 'shake')">
                 <img src="battle.png" alt="Battle" class="anim-battle click-wiggle">
             </div>
@@ -778,6 +834,8 @@
         <!-- Page 7: The Gift -->
         <div class="page">
             <img src="rabbit.png" class="hidden-rabbit" style="top: 30px; left: 50px;" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="top: 120px; left: 60px; font-size: 45px;"
+                onclick="interactFood(this)" title="Rabbit Stew">🥘</div>
             <div class="illustration" onclick="animateElement(this, 'glow')">
                 <img src="house_stella.png" alt="Stella House" class="anim-glow click-glow">
             </div>
@@ -878,6 +936,11 @@
             soundEnabled = !soundEnabled;
             const btn = document.getElementById('soundBtn');
             btn.textContent = soundEnabled ? '🔊' : '🔇';
+
+            // Stop loop sounds if muted
+            if (!soundEnabled) {
+                document.getElementById('snd-ocean').pause();
+            }
         }
 
         function playSound(type) {
@@ -885,21 +948,49 @@
 
             const soundMap = {
                 'turn': 'snd-turn',
-                'yay': 'snd-yay'
+                'yay': 'snd-yay',
+                'ocean': 'snd-ocean',
+                'sword': 'snd-sword',
+                'cannon': 'snd-cannon',
+                'bells': 'snd-bells',
+                'pop': 'snd-pop'
             };
 
             const audioId = soundMap[type];
             if (audioId) {
                 const audio = document.getElementById(audioId);
                 if (audio) {
-                    audio.currentTime = 0;
+                    if (audioId !== 'snd-ocean') audio.currentTime = 0;
                     audio.play().catch(e => console.log("Audio prevent default"));
                 }
             }
         }
 
+        function stopSound(type) {
+            const soundMap = { 'ocean': 'snd-ocean' };
+            const audioId = soundMap[type];
+            if (audioId) {
+                const audio = document.getElementById(audioId);
+                audio.pause();
+                audio.currentTime = 0;
+            }
+        }
+
         function showPage(index) {
             playSound('turn');
+
+            // Page specific sounds
+            stopSound('ocean');
+
+            if (index === 2) { // Page 3 - Voyage
+                const ocean = document.getElementById('snd-ocean');
+                if (soundEnabled) ocean.play().catch(e => console.log(e));
+            }
+            if (index === 6) { // Page 7 - Victory
+                playSound('bells');
+            }
+
+
             pages.forEach((page, i) => {
                 page.classList.remove('active');
                 if (i === index) {
@@ -946,13 +1037,37 @@
         // Animations
         function animateElement(element, type) {
             // Remove class to reset
-            element.classList.remove(type); // Actually element might have 'click-wiggle' which triggers keyframe
+            element.classList.remove(type);
 
             // Add 'clicked' class to trigger one-off animation
             element.classList.add('clicked');
             setTimeout(() => {
                 element.classList.remove('clicked');
             }, 1000);
+
+            // Battle page click on main image triggers sword sound
+            if (type === 'shake') {
+                playSound('sword');
+            }
+        }
+
+        // Interactive Items (Cannons, Food)
+        function fireCannon(element) {
+            playSound('cannon');
+            element.classList.add('popped');
+            setTimeout(() => { element.classList.remove('popped'); }, 500);
+
+            // Shake the page a bit!
+            const page = element.closest('.page');
+            page.style.transform = 'translate(5px, 0)';
+            setTimeout(() => { page.style.transform = 'translate(-5px, 0)'; }, 50);
+            setTimeout(() => { page.style.transform = 'none'; }, 100);
+        }
+
+        function interactFood(element) {
+            playSound('pop');
+            element.classList.add('popped');
+            setTimeout(() => { element.classList.remove('popped'); }, 500);
         }
 
         // Rabbit Game
