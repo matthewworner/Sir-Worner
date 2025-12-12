@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wally Worner and the Siege of Malta</title>
     <!-- Premium Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Chewy&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -21,21 +19,18 @@
     <audio id="snd-bells" src="https://assets.mixkit.co/active_storage/sfx/573/573-preview.mp3"></audio>
     <audio id="snd-pop" src="https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3"></audio>
 
-    <div class="rabbit-counter-panel"
-        style="position: fixed; top: 10px; right: 20px; z-index: 151; background: #fff8e1; border: 2px solid #5d4037; border-radius: 20px; padding: 5px 15px; font-family: 'Chewy', cursive; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 5px rgba(0,0,0,0.2);">
+    <div class="rabbit-counter-panel" style="position: fixed; top: 10px; right: 20px; z-index: 151; background: #fff8e1; border: 2px solid #5d4037; border-radius: 20px; padding: 5px 15px; font-family: 'Chewy', cursive; display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 5px rgba(0,0,0,0.2);">
         <img src="assets/images/rabbit.png" alt="Rabbit" style="width: 40px;"> <span id="rabbit-count">0/8 Found</span>
     </div>
 
     <!-- Home Button -->
     <div style="position: fixed; top: 20px; left: 20px; z-index: 150;">
-        <button onclick="window.location.href='index.html'"
-            style="padding: 10px; font-family: 'Chewy'; font-size: 20px; border-radius: 10px; background: #FFD700; border: 3px solid #5d4037; color: #5d4037; cursor: pointer; box-shadow: 0 4px 5px rgba(0,0,0,0.3);">
+        <button onclick="window.location.href='index.html'" style="padding: 10px; font-family: 'Chewy'; font-size: 20px; border-radius: 10px; background: #FFD700; border: 3px solid #5d4037; color: #5d4037; cursor: pointer; box-shadow: 0 4px 5px rgba(0,0,0,0.3);">
             🏠 Home
         </button>
     </div>
 
-    <div class="game-tip" id="gameTip"
-        style="display: none; position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #fff; padding: 15px 30px; border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 160; animation: bounce 2s infinite;">
+    <div class="game-tip" id="gameTip" style="display: none; position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #fff; padding: 15px 30px; border-radius: 50px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 160; animation: bounce 2s infinite;">
         <strong>Psst!</strong> Help find the hidden rabbits on each page! 🐰
     </div>
 
@@ -45,10 +40,8 @@
             <h1 class="cover-title">Wally Worner<br>and the<br>Great Siege of Malta</h1>
 
             <div class="cover-collage">
-                <img src="assets/images/castle.png" class="cover-bg-img"
-                    style="left: 10%; top: 20%; transform: rotate(-10deg); width: 150px;">
-                <img src="assets/images/ship.png" class="cover-bg-img"
-                    style="right: 10%; top: 30%; transform: rotate(10deg); width: 150px;">
+                <img src="assets/images/castle.png" class="cover-bg-img" style="left: 10%; top: 20%; transform: rotate(-10deg); width: 150px;">
+                <img src="assets/images/ship.png" class="cover-bg-img" style="right: 10%; top: 30%; transform: rotate(10deg); width: 150px;">
                 <img src="assets/images/worner.png?v=2" alt="Wally Worner" class="cover-main-img">
             </div>
 
@@ -61,8 +54,7 @@
 
         <!-- PAGE 1: MEETING WALLY & THE TEAM -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 85px; left: 30px; transform: rotate(10deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 85px; left: 30px; transform: rotate(10deg);" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'wiggle')">
                 <img src="assets/images/worner.png?v=2" alt="Wally Worner" class="anim-float click-wiggle">
             </div>
@@ -82,8 +74,7 @@
 
         <!-- PAGE 2: THE CALL TO MALTA -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 20px; left: 40px; transform: rotate(-20deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 20px; left: 40px; transform: rotate(-20deg);" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'glow')">
                 <img src="assets/images/castle.png" alt="Wally's Castle" class="anim-glow" style="width: 80%;">
             </div>
@@ -102,8 +93,7 @@
 
         <!-- PAGE 3: THE VOYAGE -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 120px; right: 50px; transform: rotate(15deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 120px; right: 50px; transform: rotate(15deg);" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'sail')">
                 <img src="assets/images/ship.png" alt="Ship to Malta" class="anim-sail">
             </div>
@@ -123,10 +113,10 @@
 
         <!-- PAGE 4: MEETING VALETTE & DISCOVERING STELLA -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 80px; left: 80px; transform: rotate(45deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 80px; left: 80px; transform: rotate(45deg);" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/house_stella.png" alt="Stella House" class="anim-glow">
+                <img src="assets/images/fortress.png" alt="Fort St Angelo" class="anim-glow" style="width: 45%; margin-right: 10px;">
+                <img src="assets/images/real_stella/bedroom.jpg" alt="Stella House" class="anim-glow" style="border: 5px solid #fff; width: 45%;">
             </div>
             <div class="text-content">
                 <h1>Discovering Stella</h1>
@@ -142,12 +132,10 @@
 
         <!-- PAGE 5: THE GREAT SIEGE BEGINS -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 50px; left: 20px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="bottom: 80px; right: 40px; font-size: 50px;"
-                onclick="fireCannon(this)" title="Fire Cannon!">💣</div>
-            <div class="illustration" onclick="animateElement(this, 'battle')">
-                <img src="assets/images/battle.png" alt="Ottoman Fleet" class="anim-battle">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 50px; left: 20px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="bottom: 80px; left: 40px; font-size: 50px;" onclick="fireCannon(this)" title="Fire Cannon!">💣</div>
+            <div class="illustration" onclick="animateElement(this, 'sail')">
+                <img src="assets/images/ship.png" alt="Ottoman Fleet" class="anim-sail" style="transform: scaleX(-1);">
             </div>
             <div class="text-content">
                 <h1>The Siege Begins!</h1>
@@ -157,20 +145,17 @@
                 <p style="margin-top: 15px;">"To the walls of Senglea!" commanded Wally. "We defend Malta here!"</p>
                 <p style="margin-top: 15px;">The three squires grabbed their shields. They were scared, but they were ready.</p>
                 <p style="margin-top: 15px;"><em>"For Malta! For Senglea! For Stella!"</em> they shouted together.</p>
-                <p style="margin-top: 10px; font-size: 16px; color: #8b0000; text-align: right; font-family: 'Chewy', cursive;">(Tap the bomb to fire the cannons!)</p>
+                <p style="margin-top: 10px; font-size: 14px; color: #555;">(Tap the bomb to fire the cannons!)</p>
             </div>
             <div class="page-number">5</div>
         </div>
 
         <!-- PAGE 6: THE GREAT BATTLE OF AUGUST 7TH -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 30px; right: 30px; transform: rotate(90deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="top: 100px; right: 60px; font-size: 50px;"
-                onclick="fireCannon(this)" title="Fire Again!">💥</div>
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 30px; right: 30px; transform: rotate(90deg);" onclick="foundRabbit(this)">
+            <div class="interactive-overlay" style="top: 100px; right: 60px; font-size: 50px;" onclick="fireCannon(this)" title="Fire Again!">💥</div>
             <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/august_7th_battle.png" alt="The Great Battle" class="click-wiggle"
-                    style="width: 80%;">
+                <img src="assets/images/real_stella/kitchen.jpg" alt="Fighting from Stella" class="click-wiggle" style="border: 5px solid #fff; width: 80%;">
             </div>
             <div class="text-content">
                 <h1>The Great Battle!</h1>
@@ -187,11 +172,9 @@
 
         <!-- PAGE 7: STELLA - THE STAR -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 60px; right: 60px; transform: rotate(-10deg);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="bottom: 60px; right: 60px; transform: rotate(-10deg);" onclick="foundRabbit(this)">
             <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/victory_feast.png" alt="Victory Celebration" class="anim-glow click-glow"
-                    style="border: 5px solid #FFD700; border-radius: 10px; width: 80%;">
+                <img src="assets/images/victory_feast.png" alt="Victory Celebration" class="anim-glow click-glow" style="border: 5px solid #FFD700; border-radius: 10px; width: 80%;">
             </div>
             <div class="text-content">
                 <h1>Stella - The Star</h1>
@@ -207,10 +190,12 @@
 
         <!-- PAGE 8: THE LEGACY -->
         <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
+            <img src="assets/images/rabbit.png" class="hidden-rabbit" style="top: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
             <div class="illustration">
-                <img src="assets/images/legacy_lives_on.png" alt="Legacy of Stella" class="page8-knight click-wiggle">
+                <div class="illustration-group">
+                    <img src="assets/images/worner.png?v=2" alt="Knight Wally" class="page8-knight click-wiggle">
+                    <img src="assets/images/real_stella/staircase.jpg" alt="Real Stella Today" class="page8-house click-glow" style="border: 5px solid white; width: 60%; height: auto;">
+                </div>
             </div>
             <div class="text-content">
                 <h1>The Legacy Lives On</h1>
@@ -252,11 +237,9 @@
 
             <!-- Ottoman Fleet -->
             <div class="pirate-ship-icon" style="bottom: 20%; left: 10%;" title="Ottoman Fleet">⚓</div>
-            <div class="pirate-ship-icon" style="bottom: 30%; left: 80%; animation-delay: 2s;" title="Ottoman Fleet">⚓
-            </div>
+            <div class="pirate-ship-icon" style="bottom: 30%; left: 80%; animation-delay: 2s;" title="Ottoman Fleet">⚓</div>
 
-            <p style="margin-top: 10px; font-family: 'Chewy'; font-size: 20px;">Explore where the Great Siege happened!
-            </p>
+            <p style="margin-top: 10px; font-family: 'Chewy'; font-size: 20px;">Explore where the Great Siege happened!</p>
         </div>
     </div>
 

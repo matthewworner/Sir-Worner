@@ -1,3 +1,23 @@
+/* ============================================
+   SENGLEA REGATTA COLORS - Red & Yellow Theme
+   ============================================ */
+
+:root {
+    /* SENGLEA REGATTA COLORS - Red & Yellow */
+    --senglea-red: #d32f2f;
+    --senglea-yellow: #ffd54f;
+    --senglea-dark-red: #b71c1c;
+    --senglea-light-yellow: #ffecb3;
+    
+    /* Maltese limestone */
+    --malta-stone: #e8d5b7;
+    --malta-gold: #d4af37;
+    
+    /* Vintage paper tones */
+    --vintage-cream: #faf6ed;
+    --vintage-aged: #f5f0e3;
+}
+
 * {
     box-sizing: border-box;
     user-select: none;
@@ -7,52 +27,107 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #3e2723;
-    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-    /* Wood texture */
+    background-color: #fdf6e3;
     font-family: 'Gentium Book Plus', serif;
     overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding-top: 2.5vh;
     color: #2c1810;
 }
 
-/* Book Container */
+/* Book Container - Senglea Regatta Colors */
 .book-container {
     width: 95%;
-    height: 95%;
+    min-height: 100vh;
     max-width: 1000px;
-    max-height: 800px;
-    background-color: #fdf6e3;
+    background-color: var(--vintage-cream);
     background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    padding: 0;
+    border-radius: 3px 25px 25px 3px;
+    /* RED & YELLOW border - Senglea Regatta colors! */
+    border: 6px solid var(--senglea-red);
+    border-left: 25px solid var(--senglea-red);
+    /* Gold accent stripe (like regatta boats) */
     box-shadow:
-        10px 10px 30px rgba(0, 0, 0, 0.5),
-        inset 30px 0 50px rgba(93, 64, 55, 0.3),
-        /* Spine shadow */
-        inset -5px 0 10px rgba(0, 0, 0, 0.1);
-    /* Right edge curvature */
+        /* Main 3D shadow */
+        15px 15px 40px rgba(0, 0, 0, 0.6),
+        /* Yellow accent stripe */
+        inset 0 0 0 3px var(--senglea-yellow),
+        inset 0 0 30px rgba(255, 213, 79, 0.3),
+        /* Deep spine shadow */
+        inset 35px 0 70px rgba(211, 47, 47, 0.5),
+        /* Right edge pages depth */
+        inset -8px 0 25px rgba(0, 0, 0, 0.2),
+        /* Top edge shadow */
+        inset 0 -6px 12px rgba(0, 0, 0, 0.15),
+        /* Bottom edge shadow */
+        inset 0 6px 12px rgba(255, 255, 255, 0.1),
+        /* Outer frame border */
+        0 0 0 2px var(--senglea-yellow),
+        0 0 0 4px rgba(211, 47, 47, 0.4);
     position: relative;
-    overflow: hidden;
-    border-left: 20px solid #5d4037;
-    /* Spine */
-    border-radius: 5px 20px 20px 5px;
-    /* Physical book shape */
-    border-top: 2px solid #e0e0e0;
-    border-bottom: 5px solid #d7ccc8;
-    /* Pages thickness at bottom */
-    border-right: 5px solid #d7ccc8;
-    /* Pages thickness at right */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Red spine with yellow racing stripes - Regatta boat style! */
+.book-container::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 15%;
+    width: 25px;
+    height: 70%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            var(--senglea-red) 0px,
+            var(--senglea-red) 40px,
+            var(--senglea-yellow) 40px,
+            var(--senglea-yellow) 45px
+        ),
+        linear-gradient(90deg, 
+            rgba(211, 47, 47, 0.9) 0%,
+            rgba(211, 47, 47, 0.4) 100%);
+    border-right: 3px solid var(--senglea-yellow);
+    box-shadow: 
+        inset -4px 0 10px rgba(0, 0, 0, 0.4),
+        inset 4px 0 6px rgba(255, 213, 79, 0.3);
+    z-index: 1;
+}
+
+/* Gold edge accent - Regatta style */
+.book-container::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: -2px;
+    bottom: -2px;
+    width: 14px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--senglea-yellow) 0px,
+        var(--senglea-yellow) 2px,
+        var(--malta-gold) 2px,
+        var(--malta-gold) 4px,
+        var(--senglea-light-yellow) 4px,
+        var(--senglea-light-yellow) 6px
+    );
+    border-radius: 0 25px 25px 0;
+    box-shadow: 
+        inset -5px 0 10px rgba(0, 0, 0, 0.3),
+        3px 0 6px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
 /* Pages */
 .page {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    min-height: 100%;
+    position: relative;
     display: none;
     flex-direction: column;
     padding: 40px 60px 100px 60px;
@@ -76,16 +151,19 @@ body {
     }
 }
 
-/* Typography */
+/* Typography - Senglea Red & Yellow */
 h1 {
     font-family: 'Chewy', cursive;
-    color: #b71c1c;
-    /* Deep red for titles */
+    color: var(--senglea-dark-red);
     font-size: 48px;
     margin-bottom: 20px;
     text-align: center;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 0px rgba(255, 213, 79, 0.4);
     line-height: 1.2;
+    padding-bottom: 10px;
+    /* Red & yellow double underline - Regatta style! */
+    border-bottom: 3px solid var(--senglea-red);
+    box-shadow: 0 3px 0 var(--senglea-yellow);
 }
 
 p {
@@ -99,13 +177,14 @@ p {
 }
 
 strong {
-    color: #b71c1c;
+    color: var(--senglea-dark-red);
+    text-shadow: 0.5px 0.5px 0px rgba(255, 213, 79, 0.3);
 }
 
 em {
-    color: #1a237e;
-    /* Navy blue for emphasis */
+    color: var(--senglea-dark-red);
     font-weight: bold;
+    font-style: italic;
 }
 
 /* Illustrations */
@@ -121,12 +200,21 @@ em {
 
 .illustration img {
     max-height: 45vh;
-    /* Responsive height */
     max-width: 100%;
     object-fit: contain;
     filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.2));
     transition: transform 0.3s ease;
     cursor: pointer;
+    /* Senglea colors border - like regatta boat trim */
+    border: 5px solid var(--senglea-red);
+    outline: 2px solid var(--senglea-yellow);
+    outline-offset: -8px;
+    padding: 6px;
+    background: var(--vintage-aged);
+    border-radius: 2px;
+    box-shadow: 
+        inset 0 0 20px rgba(211, 47, 47, 0.1),
+        0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Interactive Elements */
@@ -225,11 +313,11 @@ em {
 
 @keyframes glow {
     from {
-        filter: drop-shadow(0 0 5px gold);
+        filter: drop-shadow(0 0 5px var(--senglea-yellow));
     }
 
     to {
-        filter: drop-shadow(0 0 20px gold);
+        filter: drop-shadow(0 0 20px var(--senglea-yellow)) drop-shadow(0 0 10px var(--senglea-red));
     }
 }
 
@@ -311,7 +399,7 @@ em {
 }
 
 .click-glow:active {
-    filter: brightness(1.5) drop-shadow(0 0 20px yellow);
+    filter: brightness(1.5) drop-shadow(0 0 20px var(--senglea-yellow)) drop-shadow(0 0 10px var(--senglea-red));
     transition: 0.1s;
 }
 
@@ -349,20 +437,36 @@ button {
     padding: 15px 40px;
     font-family: 'Chewy', cursive;
     font-size: 28px;
-    color: #fff8e1;
-    /* Cream text */
-    background: linear-gradient(to bottom, #d32f2f, #b71c1c);
-    border: 2px solid #8e0000;
+    color: white;
+    /* Red & Yellow gradient button - Regatta colors */
+    background: linear-gradient(135deg, 
+        var(--senglea-red) 0%, 
+        var(--senglea-dark-red) 50%,
+        var(--senglea-red) 100%);
+    border: 3px solid var(--senglea-yellow);
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 6px 0 #7f0000, 0 10px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.1s;
+    box-shadow: 
+        0 6px 0 var(--senglea-dark-red), 
+        0 10px 10px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(135deg, 
+        var(--senglea-yellow) 0%, 
+        var(--malta-gold) 50%,
+        var(--senglea-yellow) 100%);
+    color: var(--senglea-dark-red);
+    border-color: var(--senglea-red);
+    transform: translateY(-2px);
 }
 
 button:active {
     transform: translateY(4px);
-    box-shadow: 0 0 0 #7f0000;
+    box-shadow: 0 0 0 var(--senglea-dark-red);
 }
 
 button:disabled {
@@ -377,9 +481,11 @@ button:disabled {
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    background: #f9a825;
-    /* Gold */
-    box-shadow: 0 4px 0 #c17900;
+    background: linear-gradient(135deg, 
+        var(--senglea-yellow) 0%, 
+        var(--malta-gold) 100%);
+    border: 3px solid var(--senglea-red);
+    box-shadow: 0 4px 0 var(--senglea-dark-red);
 }
 
 .page-number {
@@ -388,26 +494,50 @@ button:disabled {
     left: 50%;
     transform: translateX(-50%);
     font-size: 24px;
-    color: #5d4037;
+    color: var(--senglea-red);
     font-weight: bold;
+    text-shadow: 
+        1px 1px 0px var(--senglea-yellow),
+        2px 2px 3px rgba(0,0,0,0.2);
 }
 
-/* Cover specific */
+/* Cover specific - Red & Yellow gradient - Regatta colors! */
 .cover-page {
     text-align: center;
-    background-image: radial-gradient(circle at center, #fff8e1 0%, #fdf6e3 100%);
+    background: linear-gradient(135deg, 
+        var(--senglea-red) 0%, 
+        var(--senglea-dark-red) 30%,
+        var(--senglea-yellow) 70%,
+        var(--malta-gold) 100%);
+    /* Regatta pennant texture */
+    background-image: 
+        repeating-linear-gradient(45deg, 
+            transparent, 
+            transparent 15px, 
+            rgba(255,255,255,0.08) 15px, 
+            rgba(255,255,255,0.08) 30px),
+        linear-gradient(135deg, 
+            var(--senglea-red) 0%, 
+            var(--senglea-dark-red) 30%,
+            var(--senglea-yellow) 70%,
+            var(--malta-gold) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
 }
 
 .cover-title {
     font-size: 80px;
-    color: #b71c1c;
+    color: white;
     margin: 0;
     line-height: 1.1;
-    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    text-shadow: 
+        3px 3px 0px var(--senglea-dark-red),
+        5px 5px 10px rgba(0,0,0,0.5),
+        -1px -1px 0px rgba(255, 213, 79, 0.3);
+    letter-spacing: 2px;
 }
 
 .cover-collage {
@@ -423,9 +553,19 @@ button:disabled {
 
 .cover-main-img {
     max-height: 400px;
-    /* Larger hero image */
     z-index: 2;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    /* Senglea colors border - Regatta style */
+    border: 5px solid var(--senglea-red);
+    outline: 2px solid var(--senglea-yellow);
+    outline-offset: -8px;
+    padding: 6px;
+    background: var(--vintage-aged);
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 
+        inset 0 0 20px rgba(211, 47, 47, 0.1),
+        0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .cover-bg-img {
@@ -437,8 +577,12 @@ button:disabled {
 .cover-decoration {
     font-size: 28px;
     font-style: italic;
-    color: #555;
+    color: white;
     margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background: rgba(211, 47, 47, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
 }
 
 .start-btn {
@@ -446,6 +590,20 @@ button:disabled {
     padding: 20px 60px;
     margin-top: 30px;
     animation: pulse 2s infinite;
+    /* Gold primary button - Regatta style */
+    background: linear-gradient(135deg, 
+        var(--senglea-yellow) 0%, 
+        var(--malta-gold) 100%);
+    border: 4px solid var(--senglea-red);
+    color: var(--senglea-dark-red);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+}
+
+.start-btn:hover {
+    background: linear-gradient(135deg, 
+        var(--malta-gold) 0%, 
+        var(--senglea-yellow) 100%);
+    transform: scale(1.05);
 }
 
 @keyframes pulse {
@@ -479,12 +637,17 @@ button:disabled {
 
 .victory-content,
 .map-content {
-    background: #fff8e1;
+    background: var(--vintage-cream);
     padding: 40px;
     border-radius: 20px;
     text-align: center;
-    border: 10px solid #eda000;
-    box-shadow: 0 0 50px gold;
+    /* Red & Yellow border - Regatta style */
+    border: 10px solid var(--senglea-red);
+    outline: 4px solid var(--senglea-yellow);
+    outline-offset: -14px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(255, 213, 79, 0.2);
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     max-width: 90%;
@@ -529,10 +692,27 @@ button:disabled {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 40px;
-    color: #5d4037;
+    width: 40px;
+    height: 40px;
+    background: var(--senglea-red);
+    color: white;
+    border: 3px solid var(--senglea-yellow);
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 700;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
     line-height: 0.5;
+}
+
+.close-btn:hover {
+    background: var(--senglea-yellow);
+    color: var(--senglea-dark-red);
+    border-color: var(--senglea-red);
+    transform: rotate(90deg);
 }
 
 /* Map Markers */
@@ -655,4 +835,35 @@ button:disabled {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+}
+
+/* Regatta boat decorative symbol */
+.page::after {
+    content: '⛵';
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    font-size: 24px;
+    opacity: 0.6;
+    filter: 
+        hue-rotate(330deg) 
+        saturate(1.5);
+    z-index: 1;
+}
+
+/* Regatta boat animation */
+@keyframes regattaFloat {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg);
+    }
+    25% { 
+        transform: translateX(10px) rotate(-2deg);
+    }
+    75% { 
+        transform: translateX(-10px) rotate(2deg);
+    }
+}
+
+.regatta-boat {
+    animation: regattaFloat 4s ease-in-out infinite;
 }

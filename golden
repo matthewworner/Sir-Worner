@@ -1,0 +1,665 @@
+/* ============================================
+   WALLY WORNER - 1950s GOLDEN AGE × SENGLEA STYLE
+   Vintage Children's Book + Maltese Red & Yellow
+   Inspired by: Little Golden Books + Senglea Regatta Colors
+   ============================================ */
+
+/* Import vintage-appropriate fonts */
+@import url('https://fonts.googleapis.com/css2?family=Neucha&family=Patrick+Hand&family=Architects+Daughter&family=Caveat:wght@400;700&display=swap');
+
+:root {
+    /* SENGLEA REGATTA COLORS - Red & Yellow */
+    --senglea-red: #d32f2f;
+    --senglea-yellow: #ffd54f;
+    --senglea-dark-red: #b71c1c;
+    --senglea-light-yellow: #ffecb3;
+    
+    /* Vintage paper tones */
+    --vintage-cream: #faf6ed;
+    --vintage-aged: #f5f0e3;
+    --vintage-brown: #8b6f47;
+    --vintage-dark: #5d3a1a;
+    
+    /* Maltese limestone */
+    --malta-stone: #e8d5b7;
+    --malta-gold: #d4af37;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Patrick Hand', 'Architects Daughter', cursive;
+    background: var(--vintage-brown);
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ============================================
+   BOOK CONTAINER - Senglea Regatta Colors
+   ============================================ */
+
+.book-container {
+    width: 95vw;
+    max-width: 900px;
+    height: 92vh;
+    max-height: 700px;
+    position: relative;
+    
+    /* Maltese limestone with Senglea accent */
+    background: linear-gradient(135deg, var(--malta-stone) 0%, var(--vintage-aged) 100%);
+    
+    /* RED & YELLOW border - Senglea Regatta colors! */
+    border: 8px solid var(--senglea-red);
+    border-left: 25px solid var(--senglea-red);
+    border-radius: 8px;
+    
+    /* Gold accent stripe (like regatta boats) */
+    box-shadow: 
+        inset 0 0 0 3px var(--senglea-yellow),
+        inset 0 0 30px rgba(255, 213, 79, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        -5px 0 15px rgba(0, 0, 0, 0.3);
+    
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* Vintage texture overlay */
+    background-image: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+}
+
+/* Red spine with yellow stripes - Regatta boat style! */
+.book-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    background: 
+        repeating-linear-gradient(0deg,
+            var(--senglea-red) 0px,
+            var(--senglea-red) 40px,
+            var(--senglea-yellow) 40px,
+            var(--senglea-yellow) 45px),
+        linear-gradient(to right, 
+            rgba(211, 47, 47, 0.9) 0%,
+            rgba(211, 47, 47, 0.4) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Gold edge accent */
+.book-container::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(to left, 
+        var(--senglea-yellow) 0%,
+        transparent 100%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ============================================
+   PAGE STYLING - Vintage Cream Paper
+   ============================================ */
+
+.page {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    padding: 50px 60px 80px 70px;
+    position: relative;
+    
+    background: var(--vintage-cream);
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(200, 180, 150, 0.03) 2px, rgba(200, 180, 150, 0.03) 4px),
+        radial-gradient(ellipse at center, var(--vintage-cream) 0%, var(--vintage-aged) 100%);
+    
+    animation: pageFlip 0.8s ease-in-out;
+}
+
+.page.active {
+    display: flex;
+}
+
+@keyframes pageFlip {
+    0% {
+        opacity: 0;
+        transform: perspective(1200px) rotateY(-20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: perspective(1200px) rotateY(0deg);
+    }
+}
+
+/* Vintage aging spots */
+.page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(211, 47, 47, 0.02) 0%, transparent 3%),
+        radial-gradient(circle at 80% 60%, rgba(255, 213, 79, 0.03) 0%, transparent 4%),
+        radial-gradient(circle at 40% 80%, rgba(139, 111, 71, 0.02) 0%, transparent 2%);
+    pointer-events: none;
+}
+
+/* ============================================
+   COVER PAGE - Senglea Regatta Style
+   ============================================ */
+
+.cover-page {
+    /* Red & Yellow gradient - Regatta colors! */
+    background: 
+        linear-gradient(135deg, 
+            var(--senglea-red) 0%, 
+            var(--senglea-dark-red) 30%,
+            var(--senglea-yellow) 70%,
+            var(--malta-gold) 100%);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    
+    /* Regatta pennant texture */
+    background-image: 
+        repeating-linear-gradient(45deg, 
+            transparent, 
+            transparent 15px, 
+            rgba(255,255,255,0.08) 15px, 
+            rgba(255,255,255,0.08) 30px);
+    
+    border: 8px solid var(--vintage-brown);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+}
+
+.cover-title {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 
+        3px 3px 0px var(--senglea-dark-red),
+        5px 5px 10px rgba(0,0,0,0.5),
+        -1px -1px 0px rgba(255, 213, 79, 0.3);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+}
+
+.cover-decoration {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    color: white;
+    font-style: italic;
+    margin-top: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background: rgba(211, 47, 47, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+/* ============================================
+   ILLUSTRATIONS - Red & Yellow Frames
+   ============================================ */
+
+.illustration {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative;
+    
+    /* Senglea colors border - like regatta boat trim */
+    border: 5px solid var(--senglea-red);
+    outline: 2px solid var(--senglea-yellow);
+    outline-offset: -8px;
+    
+    background: var(--vintage-aged);
+    padding: 15px;
+    box-shadow: 
+        inset 0 0 20px rgba(211, 47, 47, 0.1),
+        0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.illustration img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: 
+        sepia(0.15) 
+        contrast(1.05) 
+        brightness(1.02)
+        saturate(0.85);
+    transition: transform 0.3s ease;
+}
+
+.illustration img:hover {
+    transform: scale(1.02);
+}
+
+/* ============================================
+   TEXT CONTENT - Maltese Paper Style
+   ============================================ */
+
+.text-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background: rgba(250, 246, 237, 0.9);
+    
+    /* Red & yellow accent border */
+    border: 3px solid var(--senglea-red);
+    border-left: 6px solid var(--senglea-yellow);
+    border-radius: 5px;
+    
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--vintage-dark);
+    
+    background-image: 
+        repeating-linear-gradient(0deg, 
+            transparent, 
+            transparent 25px, 
+            rgba(211, 47, 47, 0.02) 25px, 
+            rgba(211, 47, 47, 0.02) 26px);
+    
+    box-shadow: 
+        inset 0 0 15px rgba(211, 47, 47, 0.08),
+        0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.text-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.text-content::-webkit-scrollbar-track {
+    background: var(--senglea-light-yellow);
+    border-radius: 5px;
+}
+
+.text-content::-webkit-scrollbar-thumb {
+    background: var(--senglea-red);
+    border-radius: 5px;
+    border: 2px solid var(--senglea-light-yellow);
+}
+
+/* Vintage chapter headings with Senglea colors */
+.text-content h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    color: var(--senglea-dark-red);
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 2px 2px 0px rgba(255, 213, 79, 0.4);
+    padding-bottom: 10px;
+    
+    /* Red & yellow double underline */
+    border-bottom: 3px solid var(--senglea-red);
+    box-shadow: 0 3px 0 var(--senglea-yellow);
+}
+
+/* Drop cap in Senglea red */
+.text-content p:first-of-type::first-letter {
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    font-weight: 700;
+    float: left;
+    line-height: 0.9;
+    margin: 5px 8px 0 0;
+    color: var(--senglea-red);
+    text-shadow: 1px 1px 0px rgba(255, 213, 79, 0.5);
+}
+
+.text-content em {
+    color: var(--senglea-dark-red);
+    font-style: italic;
+    font-weight: 600;
+}
+
+.text-content strong {
+    color: var(--senglea-dark-red);
+    font-weight: 700;
+    text-shadow: 0.5px 0.5px 0px rgba(255, 213, 79, 0.3);
+}
+
+/* ============================================
+   DECORATIVE ELEMENTS - Regatta Style
+   ============================================ */
+
+.page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--senglea-red);
+    font-weight: 700;
+    text-shadow: 
+        1px 1px 0px var(--senglea-yellow),
+        2px 2px 3px rgba(0,0,0,0.2);
+}
+
+/* Regatta boat decorative symbol */
+.page::after {
+    content: '⛵';
+    position: absolute;
+    bottom: 20px;
+    left: 40px;
+    font-size: 24px;
+    opacity: 0.6;
+    filter: 
+        hue-rotate(330deg) 
+        saturate(1.5);
+}
+
+/* ============================================
+   BUTTONS - Maltese Wood & Regatta Colors
+   ============================================ */
+
+button {
+    padding: 12px 28px;
+    font-size: 18px;
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    
+    /* Red & Yellow gradient button */
+    background: linear-gradient(135deg, 
+        var(--senglea-red) 0%, 
+        var(--senglea-dark-red) 50%,
+        var(--senglea-red) 100%);
+    
+    color: white;
+    border: 3px solid var(--senglea-yellow);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(135deg, 
+        var(--senglea-yellow) 0%, 
+        var(--malta-gold) 50%,
+        var(--senglea-yellow) 100%);
+    color: var(--senglea-dark-red);
+    border-color: var(--senglea-red);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0px);
+}
+
+button:disabled {
+    background: #b8a488;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.start-btn {
+    font-size: 24px;
+    padding: 15px 40px;
+    
+    /* Gold primary button */
+    background: linear-gradient(135deg, 
+        var(--senglea-yellow) 0%, 
+        var(--malta-gold) 100%);
+    
+    border: 4px solid var(--senglea-red);
+    color: var(--senglea-dark-red);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+}
+
+.start-btn:hover {
+    background: linear-gradient(135deg, 
+        var(--malta-gold) 0%, 
+        var(--senglea-yellow) 100%);
+    transform: scale(1.05);
+}
+
+/* ============================================
+   INTERACTIVE ELEMENTS - Regatta Style
+   ============================================ */
+
+.hidden-rabbit {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: 
+        sepia(0.3) 
+        drop-shadow(2px 2px 4px rgba(211, 47, 47, 0.5));
+    animation: hop 2s ease-in-out infinite;
+    z-index: 50;
+}
+
+@keyframes hop {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-5deg); }
+}
+
+.hidden-rabbit:hover {
+    transform: scale(1.3) rotate(10deg);
+    filter: 
+        sepia(0) 
+        drop-shadow(3px 3px 6px var(--senglea-red));
+}
+
+/* ============================================
+   MODALS - Maltese Vintage Style
+   ============================================ */
+
+.map-modal,
+.victory-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(211, 47, 47, 0.7);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-modal.active,
+.victory-modal.active {
+    display: flex;
+}
+
+.map-content,
+.victory-content {
+    background: var(--vintage-cream);
+    padding: 40px;
+    
+    /* Red & Yellow border */
+    border: 10px solid var(--senglea-red);
+    outline: 4px solid var(--senglea-yellow);
+    outline-offset: -14px;
+    
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(255, 213, 79, 0.2);
+    
+    background-image: 
+        repeating-linear-gradient(0deg, 
+            transparent, 
+            transparent 2px, 
+            rgba(211, 47, 47, 0.02) 2px, 
+            rgba(211, 47, 47, 0.02) 4px);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: var(--senglea-red);
+    color: white;
+    border: 3px solid var(--senglea-yellow);
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    font-family: 'Caveat', cursive;
+}
+
+.close-btn:hover {
+    background: var(--senglea-yellow);
+    color: var(--senglea-dark-red);
+    border-color: var(--senglea-red);
+    transform: rotate(90deg);
+}
+
+/* ============================================
+   RABBIT COUNTER - Regatta Badge Style
+   ============================================ */
+
+.rabbit-counter-panel {
+    background: linear-gradient(135deg, 
+        var(--senglea-light-yellow) 0%, 
+        white 100%);
+    border: 4px solid var(--senglea-red);
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 213, 79, 0.3);
+}
+
+.rabbit-counter-panel span {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--senglea-dark-red);
+}
+
+/* ============================================
+   REGATTA BOAT ANIMATION (Optional Decoration)
+   ============================================ */
+
+@keyframes regattaFloat {
+    0%, 100% { 
+        transform: translateX(0) rotate(0deg);
+    }
+    25% { 
+        transform: translateX(10px) rotate(-2deg);
+    }
+    75% { 
+        transform: translateX(-10px) rotate(2deg);
+    }
+}
+
+.regatta-boat {
+    animation: regattaFloat 4s ease-in-out infinite;
+}
+
+/* ============================================
+   MALTESE FESTA LIGHTS EFFECT (Optional)
+   ============================================ */
+
+@keyframes festaLights {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.festa-decoration {
+    animation: festaLights 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .page {
+        padding: 30px 25px 60px 35px;
+    }
+    
+    .text-content {
+        font-size: 16px;
+        padding: 20px;
+    }
+    
+    .text-content h1 {
+        font-size: 28px;
+    }
+    
+    .cover-title {
+        font-size: 36px;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    body {
+        background: white;
+    }
+    
+    .book-container {
+        border-color: var(--senglea-red);
+        box-shadow: none;
+    }
+    
+    .controls,
+    .rabbit-counter-panel,
+    button {
+        display: none !important;
+    }
+    
+    .page {
+        page-break-after: always;
+        display: block !important;
+    }
+}
