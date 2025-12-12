@@ -42,28 +42,30 @@ body {
 }
 
 /* Book Container - Senglea Regatta Colors */
-/* Book Container - Little Golden Book Style */
+/* Book Container - Family Treasure / Heirloom Style */
 .book-container {
     width: 95%;
     min-height: 100vh;
     max-width: 1000px;
-    background-color: var(--vintage-cream);
-    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    /* High quality parchment paper texture */
+    background-color: #fdfbf7;
+    background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
     padding: 0;
     border-radius: 4px 15px 15px 4px;
-    /* GOLD FOIL spine for Little Golden Book look */
-    border-left: 35px solid #d4af37;
-    border-top: 2px solid #d4af37;
-    border-bottom: 2px solid #d4af37;
-    border-right: 4px solid #d4af37;
+
+    /* ANTIQUE LEATHER SPINE - Deep Burgundy/Brown */
+    border-left: 45px solid #4a1a1a;
+    border-top: 4px solid #4a1a1a;
+    border-bottom: 4px solid #4a1a1a;
+    border-right: 4px solid #4a1a1a;
 
     box-shadow:
-        /* Deep 3D Shadow */
-        20px 20px 50px rgba(0, 0, 0, 0.5),
-        /* Inner shadow for depth */
-        inset 10px 0 20px rgba(0, 0, 0, 0.1),
-        /* Highlight on top edge */
-        inset 0 2px 0 rgba(255, 255, 255, 0.5);
+        /* Realistic weighted shadow */
+        25px 25px 60px rgba(0, 0, 0, 0.5),
+        /* Touch of ambient light reflection */
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        /* Inner shadow for page depth */
+        inset 15px 0 30px rgba(0, 0, 0, 0.15);
 
     position: relative;
     overflow-y: auto;
@@ -71,61 +73,59 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-/* The Gold Foil Spine Pattern */
+/* The Leather Spine with Raised Bands */
 .book-container::before {
     content: '';
     position: absolute;
-    left: -35px;
+    left: -45px;
     /* Matches border-left width */
-    top: 0;
-    bottom: 0;
-    width: 35px;
-    /* Complex gradient to simulate crinkled gold foil */
-    background:
-        repeating-linear-gradient(45deg,
-            #bf9b30,
-            #e6c96a 10px,
-            #bf9b30 20px,
-            #cfb53b 25px);
-    background-size: 100% 100%;
-    border-right: 2px solid #b8860b;
-    box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.4), inset -2px 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    /* Pattern overlay for the "foil" texture */
+    top: -4px;
+    bottom: -4px;
+    width: 45px;
+    /* Leather Texture and Raised Bands simulation */
+    background-color: #5d2020;
     background-image:
-        linear-gradient(90deg, rgba(255, 215, 0, 0.6) 0%, rgba(184, 134, 11, 0.6) 100%),
-        url('https://www.transparenttextures.com/patterns/aluminum.png');
-    border-radius: 4px 0 0 4px;
+        /* Raised Bands (The ridges on old books) */
+        linear-gradient(to bottom,
+            transparent 10%, rgba(0, 0, 0, 0.3) 10%, rgba(255, 255, 255, 0.1) 11%, transparent 11%,
+            transparent 30%, rgba(0, 0, 0, 0.3) 30%, rgba(255, 255, 255, 0.1) 31%, transparent 31%,
+            transparent 50%, rgba(0, 0, 0, 0.3) 50%, rgba(255, 255, 255, 0.1) 51%, transparent 51%,
+            transparent 70%, rgba(0, 0, 0, 0.3) 70%, rgba(255, 255, 255, 0.1) 71%, transparent 71%,
+            transparent 90%, rgba(0, 0, 0, 0.3) 90%, rgba(255, 255, 255, 0.1) 91%, transparent 91%),
+        /* Leather grain texture */
+        url('https://www.transparenttextures.com/patterns/black-scales.png');
+
+    border-right: 2px solid #3d1414;
+    box-shadow:
+        inset 5px 0 15px rgba(0, 0, 0, 0.5),
+        /* Roundness of spine */
+        inset -2px 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    border-radius: 6px 0 0 6px;
 }
 
-/* Decorative pattern on the gold spine (animals/flowers typical of Golden Books) */
+/* Gold Embossed Ornament on Spine */
 .book-container::after {
-    content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+    content: '⚜';
+    /* Fleur-de-lis or similar classic ornament */
     position: absolute;
-    left: -35px;
-    top: 20px;
-    bottom: 20px;
-    width: 35px;
-    overflow: hidden;
-    color: rgba(139, 69, 19, 0.4);
-    /* Brownish pressed stamp look */
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px 0;
-    font-family: 'Times New Roman', serif;
-    letter-spacing: 2px;
-    pointer-events: none;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
-    z-index: 3;
-    line-height: 25px;
-    word-break: break-all;
+    left: -45px;
+    top: 55px;
+    /* Sits between bands */
+    width: 45px;
     text-align: center;
+    color: #c5a059;
+    /* Antique Gold */
+    font-size: 24px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+    opacity: 0.9;
+    background: radial-gradient(circle at center, rgba(197, 160, 89, 0.2) 0%, transparent 60%);
+    z-index: 3;
+    pointer-events: none;
+    /* Add a second ornament lower down using pseudo-shadow hack or gradient if needed, keeping it simple for now */
 }
 
-/* Pages */
+/* Page Texture adjustment */
 .page {
     width: 100%;
     min-height: 100%;
@@ -133,7 +133,7 @@ body {
     display: none;
     flex-direction: column;
     padding: 40px 60px 100px 60px;
-    animation: fadeIn 0.8s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
     background: transparent;
 }
 
