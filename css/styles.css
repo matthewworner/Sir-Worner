@@ -8,11 +8,11 @@
     --senglea-yellow: #ffd54f;
     --senglea-dark-red: #b71c1c;
     --senglea-light-yellow: #ffecb3;
-    
+
     /* Maltese limestone */
     --malta-stone: #e8d5b7;
     --malta-gold: #d4af37;
-    
+
     /* Vintage paper tones */
     --vintage-cream: #faf6ed;
     --vintage-aged: #f5f0e3;
@@ -85,19 +85,17 @@ body {
     top: 15%;
     width: 25px;
     height: 70%;
-    background: 
-        repeating-linear-gradient(
-            0deg,
+    background:
+        repeating-linear-gradient(0deg,
             var(--senglea-red) 0px,
             var(--senglea-red) 40px,
             var(--senglea-yellow) 40px,
-            var(--senglea-yellow) 45px
-        ),
-        linear-gradient(90deg, 
+            var(--senglea-yellow) 45px),
+        linear-gradient(90deg,
             rgba(211, 47, 47, 0.9) 0%,
             rgba(211, 47, 47, 0.4) 100%);
     border-right: 3px solid var(--senglea-yellow);
-    box-shadow: 
+    box-shadow:
         inset -4px 0 10px rgba(0, 0, 0, 0.4),
         inset 4px 0 6px rgba(255, 213, 79, 0.3);
     z-index: 1;
@@ -111,17 +109,15 @@ body {
     top: -2px;
     bottom: -2px;
     width: 14px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--senglea-yellow) 0px,
-        var(--senglea-yellow) 2px,
-        var(--malta-gold) 2px,
-        var(--malta-gold) 4px,
-        var(--senglea-light-yellow) 4px,
-        var(--senglea-light-yellow) 6px
-    );
+    background: repeating-linear-gradient(90deg,
+            var(--senglea-yellow) 0px,
+            var(--senglea-yellow) 2px,
+            var(--malta-gold) 2px,
+            var(--malta-gold) 4px,
+            var(--senglea-light-yellow) 4px,
+            var(--senglea-light-yellow) 6px);
     border-radius: 0 25px 25px 0;
-    box-shadow: 
+    box-shadow:
         inset -5px 0 10px rgba(0, 0, 0, 0.3),
         3px 0 6px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -216,7 +212,7 @@ em {
     padding: 6px;
     background: var(--vintage-aged);
     border-radius: 2px;
-    box-shadow: 
+    box-shadow:
         inset 0 0 20px rgba(211, 47, 47, 0.1),
         0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -443,15 +439,15 @@ button {
     font-size: 28px;
     color: white;
     /* Red & Yellow gradient button - Regatta colors */
-    background: linear-gradient(135deg, 
-        var(--senglea-red) 0%, 
-        var(--senglea-dark-red) 50%,
-        var(--senglea-red) 100%);
+    background: linear-gradient(135deg,
+            var(--senglea-red) 0%,
+            var(--senglea-dark-red) 50%,
+            var(--senglea-red) 100%);
     border: 3px solid var(--senglea-yellow);
     border-radius: 50px;
     cursor: pointer;
-    box-shadow: 
-        0 6px 0 var(--senglea-dark-red), 
+    box-shadow:
+        0 6px 0 var(--senglea-dark-red),
         0 10px 10px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transition: all 0.3s;
@@ -459,10 +455,10 @@ button {
 }
 
 button:hover:not(:disabled) {
-    background: linear-gradient(135deg, 
-        var(--senglea-yellow) 0%, 
-        var(--malta-gold) 50%,
-        var(--senglea-yellow) 100%);
+    background: linear-gradient(135deg,
+            var(--senglea-yellow) 0%,
+            var(--malta-gold) 50%,
+            var(--senglea-yellow) 100%);
     color: var(--senglea-dark-red);
     border-color: var(--senglea-red);
     transform: translateY(-2px);
@@ -485,9 +481,9 @@ button:disabled {
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, 
-        var(--senglea-yellow) 0%, 
-        var(--malta-gold) 100%);
+    background: linear-gradient(135deg,
+            var(--senglea-yellow) 0%,
+            var(--malta-gold) 100%);
     border: 3px solid var(--senglea-red);
     box-shadow: 0 4px 0 var(--senglea-dark-red);
 }
@@ -500,28 +496,28 @@ button:disabled {
     font-size: 24px;
     color: var(--senglea-red);
     font-weight: bold;
-    text-shadow: 
+    text-shadow:
         1px 1px 0px var(--senglea-yellow),
-        2px 2px 3px rgba(0,0,0,0.2);
+        2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Cover specific - Red & Yellow gradient - Regatta colors! */
 .cover-page {
     text-align: center;
-    background: linear-gradient(135deg, 
-        var(--senglea-red) 0%, 
-        var(--senglea-dark-red) 30%,
-        var(--senglea-yellow) 70%,
-        var(--malta-gold) 100%);
+    background: linear-gradient(135deg,
+            var(--senglea-red) 0%,
+            var(--senglea-dark-red) 30%,
+            var(--senglea-yellow) 70%,
+            var(--malta-gold) 100%);
     /* Regatta pennant texture */
-    background-image: 
-        repeating-linear-gradient(45deg, 
-            transparent, 
-            transparent 15px, 
-            rgba(255,255,255,0.08) 15px, 
-            rgba(255,255,255,0.08) 30px),
-        linear-gradient(135deg, 
-            var(--senglea-red) 0%, 
+    background-image:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 255, 255, 0.08) 15px,
+            rgba(255, 255, 255, 0.08) 30px),
+        linear-gradient(135deg,
+            var(--senglea-red) 0%,
             var(--senglea-dark-red) 30%,
             var(--senglea-yellow) 70%,
             var(--malta-gold) 100%);
@@ -529,7 +525,7 @@ button:disabled {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
 }
 
 .cover-title {
@@ -537,9 +533,9 @@ button:disabled {
     color: white;
     margin: 0;
     line-height: 1.1;
-    text-shadow: 
+    text-shadow:
         3px 3px 0px var(--senglea-dark-red),
-        5px 5px 10px rgba(0,0,0,0.5),
+        5px 5px 10px rgba(0, 0, 0, 0.5),
         -1px -1px 0px rgba(255, 213, 79, 0.3);
     letter-spacing: 2px;
 }
@@ -567,7 +563,7 @@ button:disabled {
     background: var(--vintage-aged);
     position: relative;
     border-radius: 2px;
-    box-shadow: 
+    box-shadow:
         inset 0 0 20px rgba(211, 47, 47, 0.1),
         0 8px 20px rgba(0, 0, 0, 0.5);
 }
@@ -583,7 +579,7 @@ button:disabled {
     font-style: italic;
     color: white;
     margin-top: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     background: rgba(211, 47, 47, 0.3);
     padding: 8px 20px;
     border-radius: 20px;
@@ -595,18 +591,18 @@ button:disabled {
     margin-top: 30px;
     animation: pulse 2s infinite;
     /* Gold primary button - Regatta style */
-    background: linear-gradient(135deg, 
-        var(--senglea-yellow) 0%, 
-        var(--malta-gold) 100%);
+    background: linear-gradient(135deg,
+            var(--senglea-yellow) 0%,
+            var(--malta-gold) 100%);
     border: 4px solid var(--senglea-red);
     color: var(--senglea-dark-red);
     text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
 }
 
 .start-btn:hover {
-    background: linear-gradient(135deg, 
-        var(--malta-gold) 0%, 
-        var(--senglea-yellow) 100%);
+    background: linear-gradient(135deg,
+            var(--malta-gold) 0%,
+            var(--senglea-yellow) 100%);
     transform: scale(1.05);
 }
 
@@ -649,7 +645,7 @@ button:disabled {
     border: 10px solid var(--senglea-red);
     outline: 4px solid var(--senglea-yellow);
     outline-offset: -14px;
-    box-shadow: 
+    box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.5),
         inset 0 0 30px rgba(255, 213, 79, 0.2);
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -787,167 +783,165 @@ button:disabled {
     body {
         padding-top: 0;
         align-items: flex-start;
-        overflow-y: auto;
+        overflow-y: hidden;
+        /* Prevent body scroll, handle inside book-container */
         overflow-x: hidden;
+        height: 100vh;
+        position: fixed;
+        /* Lock body for iOS */
+        width: 100%;
     }
 
     .book-container {
         width: 100%;
+        height: 100vh;
         min-height: 100vh;
         max-width: 100%;
         border-radius: 0;
-        border-left-width: 15px;
-        border-width: 4px;
+        border-left-width: 10px;
+        /* Reduced from 15px */
+        border-width: 0;
+        /* Remove top/bottom borders to save space */
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        /* Container doesn't scroll, but page content might */
     }
 
     .book-container::before {
-        width: 15px;
-        left: -15px;
+        width: 10px;
+        left: -10px;
     }
 
     .book-container::after {
-        width: 8px;
-        right: -4px;
+        width: 5px;
+        right: -3px;
     }
 
     .page {
-        padding: 15px 15px 90px 25px;
-        min-height: auto;
+        padding: 10px 10px 80px 15px;
+        /* Bottom padding for controls */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        /* Allow text to scroll if needed */
+        -webkit-overflow-scrolling: touch;
     }
 
     h1 {
-        font-size: 24px;
-        margin-bottom: 15px;
-        padding-bottom: 8px;
+        font-size: 22px;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
         border-bottom-width: 2px;
+        flex-shrink: 0;
     }
 
     p {
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 15px;
+        font-size: 15px;
+        line-height: 1.4;
+        margin-bottom: 10px;
     }
 
     .cover-title {
-        font-size: 32px;
+        font-size: 28px;
         line-height: 1.1;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     .cover-page {
-        padding: 20px 15px;
+        padding: 15px;
+        justify-content: center;
+        /* Center cover content */
     }
 
     .cover-collage {
         height: auto;
-        max-height: 200px;
-        margin: 10px 0;
+        max-height: 180px;
+        margin: 5px 0;
+        flex-shrink: 1;
     }
 
     .cover-main-img {
-        max-height: 150px;
+        max-height: 140px;
         border-width: 3px;
-        outline-width: 1px;
-        padding: 4px;
-    }
-
-    .cover-bg-img {
-        width: 80px !important;
-    }
-
-    .cover-decoration {
-        font-size: 16px;
-        padding: 6px 15px;
-        margin-top: 10px;
+        padding: 3px;
     }
 
     .illustration {
-        margin: 15px 0;
-        padding: 10px;
-        border-width: 3px;
-        outline-width: 1px;
+        margin: 5px 0;
+        padding: 5px;
+        flex-shrink: 1;
+        /* Allow image to shrink if height is tight */
+        min-height: 0;
     }
 
     .illustration img {
-        max-height: 30vh;
-        border-width: 3px;
-        outline-width: 1px;
-        padding: 4px;
+        max-height: 25vh;
+        /* Reduced to fit better */
+        width: auto;
+        max-width: 100%;
+        object-fit: contain;
     }
 
     .text-content {
-        padding: 15px;
-        font-size: 16px;
-        border-width: 2px;
-        border-left-width: 4px;
-    }
-
-    .text-content h1 {
-        font-size: 22px;
-    }
-
-    .text-content p:first-of-type::first-letter {
-        font-size: 2em;
+        padding: 10px;
+        border-width: 1px;
+        border-left-width: 3px;
+        flex-shrink: 0;
+        /* Text container structure shouldn't shrink too much */
     }
 
     .controls {
+        position: fixed;
+        /* Fixed to viewport bottom */
+        bottom: 0;
+        left: 0;
         width: 100%;
-        bottom: 5px;
-        padding: 0 10px;
-        flex-wrap: wrap;
-        gap: 5px;
+        padding: 10px 15px 25px 15px;
+        /* Extra bottom padding for iPhone Home bar */
+        background: rgba(253, 246, 227, 0.95);
+        /* Semi-transparent background */
+        border-top: 2px solid var(--senglea-red);
+        z-index: 100;
+        place-content: center space-between;
     }
 
     button {
-        padding: 12px 20px;
-        font-size: 18px;
-        border-width: 2px;
-        flex: 1;
-        min-width: 80px;
-        min-height: 44px; /* Touch-friendly minimum size */
-        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
-    }
-
-    .start-btn {
-        font-size: 20px;
-        padding: 12px 30px;
-        margin-top: 15px;
+        padding: 8px 15px;
+        font-size: 16px;
+        min-height: 40px;
     }
 
     .icon-btn {
-        width: 50px;
-        height: 50px;
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
-        font-size: 20px;
-        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
     }
 
-    .page-number {
+    .start-btn {
+        padding: 10px 25px;
         font-size: 18px;
-        bottom: 15px;
-        right: 15px;
     }
 
+    /* Hide non-essential decoration on small screens */
+    .game-tip,
+    .page-number,
     .page::after {
-        font-size: 16px;
-        bottom: 12px;
-        left: 12px;
-        opacity: 0.4;
-    }
-
-    .page8-knight {
-        display: none;
+        display: none !important;
     }
 
     .rabbit-counter-panel {
-        padding: 5px 10px;
-        font-size: 14px;
+        font-size: 12px;
+        padding: 3px 8px;
         top: 5px;
         right: 5px;
-        border-width: 2px;
+        background: rgba(255, 248, 225, 0.9);
     }
+
 
     .rabbit-counter-panel img {
         width: 25px;
@@ -1069,7 +1063,8 @@ button:disabled {
     }
 
     .cover-bg-img {
-        display: none; /* Hide decorative images on small screens */
+        display: none;
+        /* Hide decorative images on small screens */
     }
 }
 
