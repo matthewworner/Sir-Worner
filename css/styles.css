@@ -42,6 +42,7 @@ body {
 }
 
 /* Book Container - Senglea Regatta Colors */
+/* Book Container - Little Golden Book Style */
 .book-container {
     width: 95%;
     min-height: 100vh;
@@ -49,78 +50,79 @@ body {
     background-color: var(--vintage-cream);
     background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
     padding: 0;
-    border-radius: 3px 25px 25px 3px;
-    /* RED & YELLOW border - Senglea Regatta colors! */
-    border: 6px solid var(--senglea-red);
-    border-left: 25px solid var(--senglea-red);
-    /* Gold accent stripe (like regatta boats) */
+    border-radius: 4px 15px 15px 4px;
+    /* GOLD FOIL spine for Little Golden Book look */
+    border-left: 35px solid #d4af37;
+    border-top: 2px solid #d4af37;
+    border-bottom: 2px solid #d4af37;
+    border-right: 4px solid #d4af37;
+
     box-shadow:
-        /* Main 3D shadow */
-        15px 15px 40px rgba(0, 0, 0, 0.6),
-        /* Yellow accent stripe */
-        inset 0 0 0 3px var(--senglea-yellow),
-        inset 0 0 30px rgba(255, 213, 79, 0.3),
-        /* Deep spine shadow */
-        inset 35px 0 70px rgba(211, 47, 47, 0.5),
-        /* Right edge pages depth */
-        inset -8px 0 25px rgba(0, 0, 0, 0.2),
-        /* Top edge shadow */
-        inset 0 -6px 12px rgba(0, 0, 0, 0.15),
-        /* Bottom edge shadow */
-        inset 0 6px 12px rgba(255, 255, 255, 0.1),
-        /* Outer frame border */
-        0 0 0 2px var(--senglea-yellow),
-        0 0 0 4px rgba(211, 47, 47, 0.4);
+        /* Deep 3D Shadow */
+        20px 20px 50px rgba(0, 0, 0, 0.5),
+        /* Inner shadow for depth */
+        inset 10px 0 20px rgba(0, 0, 0, 0.1),
+        /* Highlight on top edge */
+        inset 0 2px 0 rgba(255, 255, 255, 0.5);
+
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
-/* Red spine with yellow racing stripes - Regatta boat style! */
+/* The Gold Foil Spine Pattern */
 .book-container::before {
     content: '';
     position: absolute;
-    left: -25px;
-    top: 15%;
-    width: 25px;
-    height: 70%;
+    left: -35px;
+    /* Matches border-left width */
+    top: 0;
+    bottom: 0;
+    width: 35px;
+    /* Complex gradient to simulate crinkled gold foil */
     background:
-        repeating-linear-gradient(0deg,
-            var(--senglea-red) 0px,
-            var(--senglea-red) 40px,
-            var(--senglea-yellow) 40px,
-            var(--senglea-yellow) 45px),
-        linear-gradient(90deg,
-            rgba(211, 47, 47, 0.9) 0%,
-            rgba(211, 47, 47, 0.4) 100%);
-    border-right: 3px solid var(--senglea-yellow);
-    box-shadow:
-        inset -4px 0 10px rgba(0, 0, 0, 0.4),
-        inset 4px 0 6px rgba(255, 213, 79, 0.3);
-    z-index: 1;
+        repeating-linear-gradient(45deg,
+            #bf9b30,
+            #e6c96a 10px,
+            #bf9b30 20px,
+            #cfb53b 25px);
+    background-size: 100% 100%;
+    border-right: 2px solid #b8860b;
+    box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.4), inset -2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    /* Pattern overlay for the "foil" texture */
+    background-image:
+        linear-gradient(90deg, rgba(255, 215, 0, 0.6) 0%, rgba(184, 134, 11, 0.6) 100%),
+        url('https://www.transparenttextures.com/patterns/aluminum.png');
+    border-radius: 4px 0 0 4px;
 }
 
-/* Gold edge accent - Regatta style */
+/* Decorative pattern on the gold spine (animals/flowers typical of Golden Books) */
 .book-container::after {
-    content: '';
+    content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
     position: absolute;
-    right: -6px;
-    top: -2px;
-    bottom: -2px;
-    width: 14px;
-    background: repeating-linear-gradient(90deg,
-            var(--senglea-yellow) 0px,
-            var(--senglea-yellow) 2px,
-            var(--malta-gold) 2px,
-            var(--malta-gold) 4px,
-            var(--senglea-light-yellow) 4px,
-            var(--senglea-light-yellow) 6px);
-    border-radius: 0 25px 25px 0;
-    box-shadow:
-        inset -5px 0 10px rgba(0, 0, 0, 0.3),
-        3px 0 6px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    left: -35px;
+    top: 20px;
+    bottom: 20px;
+    width: 35px;
+    overflow: hidden;
+    color: rgba(139, 69, 19, 0.4);
+    /* Brownish pressed stamp look */
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 2px;
+    pointer-events: none;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+    z-index: 3;
+    line-height: 25px;
+    word-break: break-all;
+    text-align: center;
 }
 
 /* Pages */
@@ -505,18 +507,6 @@ button:disabled {
 .cover-page {
     text-align: center;
     background: linear-gradient(135deg,
-            var(--senglea-red) 0%,
-            var(--senglea-dark-red) 30%,
-            var(--senglea-yellow) 70%,
-            var(--malta-gold) 100%);
-    /* Regatta pennant texture */
-    background-image:
-        repeating-linear-gradient(45deg,
-            transparent,
-            transparent 15px,
-            rgba(255, 255, 255, 0.08) 15px,
-            rgba(255, 255, 255, 0.08) 30px),
-        linear-gradient(135deg,
             var(--senglea-red) 0%,
             var(--senglea-dark-red) 30%,
             var(--senglea-yellow) 70%,
@@ -935,16 +925,33 @@ button:disabled {
     }
 
     .rabbit-counter-panel {
-        font-size: 12px;
-        padding: 3px 8px;
-        top: 5px;
-        right: 5px;
-        background: rgba(255, 248, 225, 0.9);
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        min-width: 120px;
+        font-size: 14px;
     }
 
-
     .rabbit-counter-panel img {
-        width: 25px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .rabbit-counter-panel span {
+        font-size: 14px;
+    }
+
+    .home-button-wrapper {
+        top: 10px;
+        left: 10px;
+    }
+
+    .home-button-wrapper button,
+    .home-btn {
+        padding: 10px 16px;
+        font-size: 16px;
+        border-radius: 15px;
+        min-height: 44px;
     }
 
     .hidden-rabbit {
@@ -1116,4 +1123,92 @@ button:disabled {
     justify-content: center;
     align-items: center;
     flex-direction: row;
+}
+
+/* Rabbit Counter Panel - Senglea Regatta Style */
+.rabbit-counter-panel {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 151;
+    background: linear-gradient(135deg,
+            var(--senglea-light-yellow) 0%,
+            white 100%);
+    border: 3px solid var(--senglea-red);
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-family: 'Chewy', cursive;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 213, 79, 0.3);
+    min-width: 140px;
+    justify-content: center;
+}
+
+.rabbit-counter-panel img {
+    width: 35px;
+    height: 35px;
+    filter: drop-shadow(2px 2px 4px rgba(211, 47, 47, 0.3));
+}
+
+.rabbit-counter-panel span {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--senglea-dark-red);
+    text-shadow: 1px 1px 0px rgba(255, 213, 79, 0.5);
+    white-space: nowrap;
+}
+
+/* Home Button - Senglea Regatta Style */
+.home-button-wrapper {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 150;
+}
+
+.home-button-wrapper button,
+.home-btn {
+    padding: 12px 20px;
+    font-family: 'Chewy', cursive;
+    font-size: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg,
+            var(--senglea-yellow) 0%,
+            var(--senglea-light-yellow) 100%);
+    border: 3px solid var(--senglea-red);
+    color: var(--senglea-dark-red);
+    cursor: pointer;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 0 15px rgba(255, 213, 79, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 700;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.home-button-wrapper button:hover,
+.home-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 15px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 213, 79, 0.5);
+    background: linear-gradient(135deg,
+            var(--senglea-light-yellow) 0%,
+            var(--senglea-yellow) 100%);
+}
+
+.home-button-wrapper button:active,
+.home-btn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.3),
+        inset 0 0 10px rgba(255, 213, 79, 0.3);
 }
