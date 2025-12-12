@@ -29,13 +29,16 @@ body {
     padding: 0;
     background-color: #fdf6e3;
     font-family: 'Gentium Book Plus', serif;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
     padding-top: 2.5vh;
     color: #2c1810;
+    -webkit-text-size-adjust: 100%;
 }
 
 /* Book Container - Senglea Regatta Colors */
@@ -71,6 +74,7 @@ body {
     position: relative;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Red spine with yellow racing stripes - Regatta boat style! */
@@ -778,37 +782,159 @@ button:disabled {
     transform: scale(1.2);
 }
 
-/* Mobile Adjustments */
+/* Mobile Adjustments - iPhone & Small Screens */
 @media (max-width: 768px) {
+    body {
+        padding-top: 0;
+        align-items: flex-start;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .book-container {
+        width: 100%;
+        min-height: 100vh;
+        max-width: 100%;
+        border-radius: 0;
+        border-left-width: 15px;
+        border-width: 4px;
+    }
+
+    .book-container::before {
+        width: 15px;
+        left: -15px;
+    }
+
+    .book-container::after {
+        width: 8px;
+        right: -4px;
+    }
+
     .page {
-        padding: 20px 20px 100px 20px;
+        padding: 15px 15px 90px 25px;
+        min-height: auto;
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 24px;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom-width: 2px;
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 15px;
     }
 
     .cover-title {
-        font-size: 40px;
+        font-size: 32px;
+        line-height: 1.1;
+        margin-bottom: 15px;
+    }
+
+    .cover-page {
+        padding: 20px 15px;
     }
 
     .cover-collage {
         height: auto;
-        max-height: 250px;
+        max-height: 200px;
         margin: 10px 0;
     }
 
     .cover-main-img {
-        max-height: 180px;
+        max-height: 150px;
+        border-width: 3px;
+        outline-width: 1px;
+        padding: 4px;
     }
 
-    .controls {
-        width: 95%;
-        bottom: 10px;
+    .cover-bg-img {
+        width: 80px !important;
+    }
+
+    .cover-decoration {
+        font-size: 16px;
+        padding: 6px 15px;
+        margin-top: 10px;
+    }
+
+    .illustration {
+        margin: 15px 0;
+        padding: 10px;
+        border-width: 3px;
+        outline-width: 1px;
+    }
+
+    .illustration img {
+        max-height: 30vh;
+        border-width: 3px;
+        outline-width: 1px;
+        padding: 4px;
+    }
+
+    .text-content {
+        padding: 15px;
+        font-size: 16px;
+        border-width: 2px;
+        border-left-width: 4px;
+    }
+
+    .text-content h1 {
+        font-size: 22px;
     }
 
     .text-content p:first-of-type::first-letter {
-        font-size: 2.5em;
+        font-size: 2em;
+    }
+
+    .controls {
+        width: 100%;
+        bottom: 5px;
+        padding: 0 10px;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 18px;
+        border-width: 2px;
+        flex: 1;
+        min-width: 80px;
+        min-height: 44px; /* Touch-friendly minimum size */
+        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
+    }
+
+    .start-btn {
+        font-size: 20px;
+        padding: 12px 30px;
+        margin-top: 15px;
+    }
+
+    .icon-btn {
+        width: 50px;
+        height: 50px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
+        font-size: 20px;
+        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
+    }
+
+    .page-number {
+        font-size: 18px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .page::after {
+        font-size: 16px;
+        bottom: 12px;
+        left: 12px;
+        opacity: 0.4;
     }
 
     .page8-knight {
@@ -817,13 +943,173 @@ button:disabled {
 
     .rabbit-counter-panel {
         padding: 5px 10px;
-        font-size: 18px;
-        top: 10px;
-        right: 10px;
+        font-size: 14px;
+        top: 5px;
+        right: 5px;
+        border-width: 2px;
     }
 
     .rabbit-counter-panel img {
-        width: 30px;
+        width: 25px;
+    }
+
+    .hidden-rabbit {
+        width: 40px;
+        height: 40px;
+        min-width: 44px;
+        min-height: 44px;
+        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
+    }
+
+    .interactive-overlay {
+        font-size: 40px !important;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: rgba(211, 47, 47, 0.3);
+    }
+
+    .cover-page p {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .illustration-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .illustration-group img {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .map-content,
+    .victory-content {
+        padding: 20px;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .map-base {
+        max-width: 100%;
+    }
+
+    .close-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+/* iPhone specific - portrait orientation */
+@media (max-width: 480px) and (orientation: portrait) {
+    body {
+        padding-top: 0;
+    }
+
+    .book-container {
+        border-left-width: 12px;
+        border-width: 3px;
+    }
+
+    .book-container::before {
+        width: 12px;
+        left: -12px;
+    }
+
+    .page {
+        padding: 10px 10px 80px 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .cover-title {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .text-content {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .cover-main-img {
+        max-height: 120px;
+    }
+
+    .cover-collage {
+        max-height: 150px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 15px;
+        min-height: 44px;
+    }
+
+    .start-btn {
+        font-size: 18px;
+        padding: 12px 25px;
+        min-height: 48px;
+    }
+
+    .page::after {
+        display: none;
+    }
+
+    .cover-bg-img {
+        display: none; /* Hide decorative images on small screens */
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    body {
+        padding-top: 0;
+    }
+
+    .book-container {
+        min-height: auto;
+        max-height: 95vh;
+    }
+
+    .page {
+        padding: 15px 15px 70px 25px;
+    }
+
+    .cover-title {
+        font-size: 28px;
+    }
+
+    .cover-main-img {
+        max-height: 120px;
+    }
+
+    .cover-collage {
+        max-height: 180px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .illustration img {
+        max-height: 25vh;
     }
 }
 
