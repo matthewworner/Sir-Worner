@@ -27,9 +27,7 @@
 
     <!-- Home Button -->
     <div class="home-button-wrapper">
-        <button onclick="window.location.href='index.html'" class="home-btn">
-            🏠 Home
-        </button>
+        <button onclick="window.location.href='index.html'" class="home-btn">🏠</button>
     </div>
 
     <div class="game-tip" id="gameTip"
@@ -43,11 +41,8 @@
             <h1 class="cover-title">Wally Worner<br>and the<br>Great Siege of Malta</h1>
 
             <div class="cover-collage">
-                <img src="assets/images/castle.png" class="cover-bg-img"
-                    style="left: 10%; top: 20%; transform: rotate(-10deg); width: 150px;">
-                <img src="assets/images/ship.png" class="cover-bg-img"
-                    style="right: 10%; top: 30%; transform: rotate(10deg); width: 150px;">
-                <img src="assets/images/worner.png?v=2" alt="Wally Worner" class="cover-main-img">
+                <img src="assets/images/cover_book1_golden.png" alt="Book 1 Cover" class="cover-image"
+                    style="border: 5px solid #fff; width: 60%; margin-bottom: 20px;">
             </div>
 
             <p class="cover-decoration">A Tale of Courage, Honor, and Adventure</p>
@@ -61,8 +56,9 @@
         <div class="page">
             <img src="assets/images/rabbit.png" class="hidden-rabbit"
                 style="bottom: 85px; left: 30px; transform: rotate(10deg);" onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'wiggle')">
-                <img src="assets/images/worner.png?v=2" alt="Wally Worner" class="anim-float click-wiggle">
+            <div class="illustration" onclick="animateElement(this, 'bounce')">
+                <img src="assets/images/worner_golden.png" alt="Wally Worner" class="page1-knight click-rotate"
+                    style="border: 5px solid #fff; width: 60%;">
             </div>
             <div class="text-content">
                 <h1>Meet Wally Worner</h1>
@@ -91,183 +87,179 @@
                 <img src="assets/images/castle.png" alt="Wally's Castle" class="anim-glow" style="width: 80%;">
             </div>
             <div class="text-content">
-                <h1>The Call to Malta</h1>
-                <p>One spring morning, a messenger arrived at Wally's castle, covered in dust from riding hard for days.
-                </p>
-                <p style="margin-top: 15px;">"Sir Wally!" the messenger gasped. "Malta is in terrible danger! The
-                    Ottoman Empire has sent hundreds of ships and thousands of soldiers to capture the island!"</p>
-                <p style="margin-top: 15px;">Marco, Seraphine, and Lola gathered around.</p>
-                <p style="margin-top: 15px;">"Grand Master Jean de la Valette calls for all brave knights to defend
-                    Malta!" the messenger continued.</p>
-                <p style="margin-top: 15px;">Wally looked at his young squires. "Malta needs us. The Knights of St. John
-                    are outnumbered ten to one. Will you come with me on this dangerous journey?"</p>
-                <p style="margin-top: 15px;">"YES!" they all shouted together.</p>
-                <p style="margin-top: 15px;"><em>"Pack your bags, squires. We sail for Malta!"</em></p>
+                <!-- Castle Image -->
+                <div class="illustration" onclick="animateElement(this, 'pulse')">
+                    <img src="assets/images/castle_golden.png" alt="Fort St Angelo" class="anim-pulse"
+                        style="border: 5px solid #fff; width: 60%;">
+                </div>
+                <div class="text-content">
+                    <h1>The Great Fort</h1>
+                    <p>Wally lived in <strong>Birgu</strong>, a small city by the sea.</p>
+                    <p style="margin-top: 15px;">He guarded <strong>Fort St. Angelo</strong>, a giant stone castle. It
+                        had
+                        thick walls to protect everyone.</p>
+                    <p style="margin-top: 15px;">"We are safe here," Wally told his friends. "These walls are strong!"
+                    </p>
+                    <p style="margin-top: 15px;">Every day, he climbed the high towers to look for danger across the
+                        blue
+                        water.</p>
+                </div>
+                <div class="page-number">2</div>
             </div>
-            <div class="page-number">2</div>
-        </div>
 
-        <!-- PAGE 3: THE VOYAGE -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 120px; right: 50px; transform: rotate(15deg);" onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'sail')">
-                <img src="assets/images/ship.png" alt="Ship to Malta" class="anim-sail">
+            <!-- PAGE 3: THE ENEMY FLEET ARRIVES -->
+            <div class="page">
+                <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                    style="top: 80px; left: 40px; transform: rotate(-20deg);" onclick="foundRabbit(this)">
+                <div class="illustration" onclick="animateElement(this, 'wobble')">
+                    <img src="assets/images/ship_golden.png" alt="Enemy Ships" class="anim-wobble"
+                        style="border: 5px solid #fff; width: 60%;">
+                </div>
+                <div class="text-content">
+                    <h1>The Perilous Voyage</h1>
+                    <p>The voyage across the Mediterranean Sea was their first great adventure!</p>
+                    <p style="margin-top: 15px;">One night, a terrible storm hit. Lightning cracked! Waves crashed! The
+                        ship
+                        rocked violently.</p>
+                    <p style="margin-top: 15px;">"I'm scared!" said Lola, holding tight to the mast.</p>
+                    <p style="margin-top: 15px;">"We'll be okay," Marco said bravely, though he was scared too.</p>
+                    <p style="margin-top: 15px;">Seraphine noticed something. "Look! The stars are making a pattern
+                        through
+                        the clouds!"</p>
+                    <p style="margin-top: 15px;">Wally saw it too. <em>"Captain! Follow those stars! Change
+                            course!"</em>
+                    </p>
+                    <p style="margin-top: 15px;">By morning, they sailed into calm waters. There, golden in the sunrise,
+                        was
+                        Malta!</p>
+                    <p style="margin-top: 15px;">"We made it!" the children cheered. Their adventure was just beginning.
+                    </p>
+                </div>
+                <div class="page-number">3</div>
             </div>
-            <div class="text-content">
-                <h1>The Perilous Voyage</h1>
-                <p>The voyage across the Mediterranean Sea was their first great adventure!</p>
-                <p style="margin-top: 15px;">One night, a terrible storm hit. Lightning cracked! Waves crashed! The ship
-                    rocked violently.</p>
-                <p style="margin-top: 15px;">"I'm scared!" said Lola, holding tight to the mast.</p>
-                <p style="margin-top: 15px;">"We'll be okay," Marco said bravely, though he was scared too.</p>
-                <p style="margin-top: 15px;">Seraphine noticed something. "Look! The stars are making a pattern through
-                    the clouds!"</p>
-                <p style="margin-top: 15px;">Wally saw it too. <em>"Captain! Follow those stars! Change course!"</em>
-                </p>
-                <p style="margin-top: 15px;">By morning, they sailed into calm waters. There, golden in the sunrise, was
-                    Malta!</p>
-                <p style="margin-top: 15px;">"We made it!" the children cheered. Their adventure was just beginning.</p>
-            </div>
-            <div class="page-number">3</div>
-        </div>
 
-        <!-- PAGE 4: MEETING VALETTE & DISCOVERING STELLA -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 80px; left: 80px; transform: rotate(45deg);" onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/house_stella.png" alt="Stella House" class="anim-glow">
+            <!-- PAGE 4: MEETING VALETTE & DISCOVERING STELLA -->
+            <div class="page">
+                <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                    style="top: 80px; left: 80px; transform: rotate(45deg);" onclick="foundRabbit(this)">
+                <div class="illustration" onclick="animateElement(this, 'glow')">
+                    <img src="assets/images/house_stella_golden.png" alt="Stella House" class="anim-glow"
+                        style="border: 5px solid #fff; width: 60%;">
+                </div>
+                <div class="text-content">
+                    <h1>Discovering Stella</h1>
+                    <p>When they arrived, Wally met <strong>Jean de la Valette</strong>—the legendary Grand Master with
+                        steel-gray eyes.</p>
+                    <p style="margin-top: 15px;"><em>"Your motto—'Not born for ourselves alone.' Good. We need knights
+                            who
+                            believe that. The Ottomans will attack Senglea. If Senglea falls, Malta falls."</em></p>
+                    <p style="margin-top: 15px;">That night, Wally and his squires explored the streets of Senglea. They
+                        walked down <strong>Triq il-Kurcifiss</strong>—the Street of the Crucifix.</p>
+                    <p style="margin-top: 15px;">One house caught their eye: <strong>number 38</strong>. Its golden
+                        limestone walls were thick and strong.</p>
+                    <p style="margin-top: 15px;">An old Maltese woman smiled. "Beautiful house, yes? Protect us, Sir
+                        Knight!"</p>
+                    <p style="margin-top: 15px;">She gave them fresh ftira bread and cheese. <em>"This house will
+                            stand,"</em> Wally promised.</p>
+                </div>
+                <div class="page-number">4</div>
             </div>
-            <div class="text-content">
-                <h1>Discovering Stella</h1>
-                <p>When they arrived, Wally met <strong>Jean de la Valette</strong>—the legendary Grand Master with
-                    steel-gray eyes.</p>
-                <p style="margin-top: 15px;"><em>"Your motto—'Not born for ourselves alone.' Good. We need knights who
-                        believe that. The Ottomans will attack Senglea. If Senglea falls, Malta falls."</em></p>
-                <p style="margin-top: 15px;">That night, Wally and his squires explored the streets of Senglea. They
-                    walked down <strong>Triq il-Kurcifiss</strong>—the Street of the Crucifix.</p>
-                <p style="margin-top: 15px;">One house caught their eye: <strong>number 38</strong>. Its golden
-                    limestone walls were thick and strong.</p>
-                <p style="margin-top: 15px;">An old Maltese woman smiled. "Beautiful house, yes? Protect us, Sir
-                    Knight!"</p>
-                <p style="margin-top: 15px;">She gave them fresh ftira bread and cheese. <em>"This house will
-                        stand,"</em> Wally promised.</p>
-            </div>
-            <div class="page-number">4</div>
-        </div>
 
-        <!-- PAGE 5: THE GREAT SIEGE BEGINS -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 50px; left: 20px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="bottom: 80px; right: 40px; font-size: 50px;"
-                onclick="fireCannon(this)" title="Fire Cannon!">💣</div>
-            <div class="illustration" onclick="animateElement(this, 'battle')">
-                <img src="assets/images/battle.png" alt="Ottoman Fleet" class="anim-battle">
+            <!-- PAGE 5: THE GREAT SIEGE BEGINS -->
+            <div class="page">
+                <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                    style="bottom: 50px; left: 20px; transform: rotate(-5deg);" onclick="foundRabbit(this)">
+                <div class="interactive-overlay" style="bottom: 80px; right: 40px; font-size: 50px;"
+                    onclick="fireCannon(this)" title="Fire Cannons!">💣</div>
+                <div class="illustration" onclick="animateElement(this, 'shake')">
+                    <img src="assets/images/battle_golden.png" alt="Great Siege Battle" class="anim-shake"
+                        style="border: 5px solid #fff; width: 60%;">
+                </div>
+                <div class="text-content">
+                    <h1>The Great Siege Begins</h1>
+                    <p>Suddenly, <strong>BOOM!</strong> The enemy cannons fired!</p>
+                    <p style="margin-top: 15px;">Day after day, cannonballs flew like angry hornets. Walls crumbled.
+                        Dust
+                        filled the air.</p>
+                    <p style="margin-top: 15px;">"Stay close!" Wally shouted to Marco, Seraphine, and Lola as they
+                        dodged
+                        falling stones.</p>
+                    <p style="margin-top: 15px;">They fought bravely on the walls of Senglea. They poured water on fires
+                        and helped carry wounded soldiers to safety.</p>
+                    <p style="margin-top: 15px;">Even when they were tired and scared, they remembered the woman at
+                        Number
+                        38. <em>"Non nobis tantum nati,"</em> they whispered.</p>
+                </div>
+                <div class="page-number">5</div>
             </div>
-            <div class="text-content">
-                <h1>The Siege Begins!</h1>
-                <p>Suddenly, bells rang from every church! <em>DONG! DONG! DONG!</em></p>
-                <p style="margin-top: 15px;">"Look!" shouted Marco, pointing at the harbor.</p>
-                <p style="margin-top: 15px;">The horizon was filled with ships—hundreds of them! The Ottoman Empire had
-                    arrived with 40,000 soldiers!</p>
-                <p style="margin-top: 15px;">"To the walls of Senglea!" commanded Wally. "We defend Malta here!"</p>
-                <p style="margin-top: 15px;">The three squires grabbed their shields. They were scared, but they were
-                    ready.</p>
-                <p style="margin-top: 15px;"><em>"For Malta! For Senglea! For Stella!"</em> they shouted together.</p>
-                <p
-                    style="margin-top: 10px; font-size: 16px; color: #8b0000; text-align: right; font-family: 'Playfair Display', serif;">
-                    (Tap the bomb to fire the cannons!)</p>
-            </div>
-            <div class="page-number">5</div>
-        </div>
 
-        <!-- PAGE 6: THE GREAT BATTLE OF AUGUST 7TH -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 30px; right: 30px; transform: rotate(90deg);" onclick="foundRabbit(this)">
-            <div class="interactive-overlay" style="top: 100px; right: 60px; font-size: 50px;"
-                onclick="fireCannon(this)" title="Fire Again!">💥</div>
-            <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/august_7th_battle.png" alt="The Great Battle" class="click-wiggle"
-                    style="width: 80%;">
+            <!-- PAGE 6: THE MIRACLE OF AUGUST 7TH -->
+            <div class="page">
+                <img src="assets/images/rabbit.png" class="hidden-rabbit"
+                    style="top: 20px; right: 20px; transform: rotate(10deg);" onclick="foundRabbit(this)">
+                <div class="illustration" onclick="animateElement(this, 'glow')">
+                    <img src="assets/images/august_7th_battle_golden.png" alt="Miracle of August 7th" class="anim-glow"
+                        style="border: 5px solid #fff; width: 60%;">
+                </div>
+                <div class="text-content">
+                    <h1>The Miracle of August 7th</h1>
+                    <p>The fighting was fiercest on <strong>August 7th</strong>. The enemy was climbing the walls!</p>
+                    <p style="margin-top: 15px;">"Hold the line!" Sir Wally cried, raising his sword.</p>
+                    <p style="margin-top: 15px;">Just when all hope seemed lost, a shout rang out. Reinforcements had
+                        arrived from Mdina! The enemy was retreating!</p>
+                    <p style="margin-top: 15px;">"It's a miracle!" Seraphine cheered.</p>
+                    <p style="margin-top: 15px;">Wally looked at the battered walls of Stella House. It was damaged, but
+                        still standing. "We did it," he smiled. "Senglea is safe for another day."</p>
+                </div>
+                <div class="page-number">6</div>
             </div>
-            <div class="text-content">
-                <h1>The Great Battle!</h1>
-                <p><strong>August 7th, 1565</strong> - The biggest battle of all!</p>
-                <p style="margin-top: 15px;">The Ottomans attacked from BOTH land AND sea!</p>
-                <p style="margin-top: 15px;">Wally had a brilliant idea: "We'll use the houses as fortresses! Position
-                    cannons in the windows!"</p>
-                <p style="margin-top: 15px;">From number 38, they could see the whole harbor. Marco spotted enemy boats.
-                    Seraphine helped load the cannons. Lola carried water to the defenders.</p>
-                <p style="margin-top: 15px;">BOOM! CRASH! The battle raged all day.</p>
-                <p style="margin-top: 15px;">The old woman brought them rabbit stew for strength. "You're defending my
-                    home!" she said. "Thank you!"</p>
-                <p style="margin-top: 15px;">By sunset, the Ottomans retreated. Number 38 had held! Senglea had held!
-                    Malta was saved!</p>
-            </div>
-            <div class="page-number">6</div>
-        </div>
 
-        <!-- PAGE 7: STELLA - THE STAR -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="bottom: 60px; right: 60px; transform: rotate(-10deg);" onclick="foundRabbit(this)">
-            <div class="illustration" onclick="animateElement(this, 'glow')">
-                <img src="assets/images/victory_feast.png" alt="Victory Celebration" class="anim-glow click-glow"
-                    style="border: 5px solid #FFD700; border-radius: 10px; width: 80%;">
-            </div>
-            <div class="text-content">
-                <h1>Stella - The Star</h1>
-                <p>That evening, Jean de la Valette found Wally and his squires outside number 38.</p>
-                <p style="margin-top: 15px;"><em>"Today you saved Senglea. This house was the key to our victory."</em>
-                </p>
-                <p style="margin-top: 15px;">The Grand Master looked up at the house. <em>"This house stood like a star
-                        of hope in our darkest hour. Let us call it 'Stella'—The Star."</em></p>
-                <p style="margin-top: 15px;">He removed his ring. <em>"I give you Stella—number 38 Triq il-Kurcifiss. It
-                        is yours, for you and your family, forever."</em></p>
-                <p style="margin-top: 15px;">That night, they celebrated with a great feast! The old woman made her
-                    famous stuffat tal-fenek (rabbit stew). Everyone ate, danced, and celebrated.</p>
-                <p style="margin-top: 15px;">Marco, Seraphine, and Lola had helped defend Malta. They were heroes!</p>
-            </div>
-            <div class="page-number">7</div>
+            </p>
         </div>
+        <div class="page-number">7</div>
+    </div>
 
-        <!-- PAGE 8: THE LEGACY -->
-        <div class="page">
-            <img src="assets/images/rabbit.png" class="hidden-rabbit"
-                style="top: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
-            <div class="illustration">
-                <img src="assets/images/legacy_lives_on.png" alt="Legacy of Stella" class="page8-knight click-wiggle">
-            </div>
-            <div class="text-content">
-                <h1>The Legacy Lives On</h1>
-                <p>Wally Worner lived happily in Stella for the rest of his life. Marco, Seraphine, and Lola grew up to
-                    become brave knights themselves.</p>
-                <p style="margin-top: 15px;">They never forgot their motto: <em>"Non nobis tantum nati"</em> - Not born
-                    for ourselves alone.</p>
-                <p style="margin-top: 15px;">They had learned that true heroes help others, share what they have, and
-                    never give up.</p>
-                <p style="margin-top: 15px;"><strong>And to this day...</strong> if you visit Malta and walk down Triq
-                    il-Kurcifiss in Senglea, you can still see Stella standing at number 38—the Star that shone through
-                    the Great Siege!</p>
-                <p style="font-size: 14px; color: #555; text-align: center; margin-top: 10px;">(That's the real Stella
-                    in the photo!)</p>
-                <p
-                    style="text-align: center; margin-top: 15px; font-family: 'Playfair Display', serif; font-size: 20px; color: #8b0000;">
-                    The End... or is it? (Read Book 2!)</p>
-            </div>
-            <div class="page-number">8</div>
+    <!-- PAGE 8: THE LEGACY -->
+    <div class="page">
+        <img src="assets/images/rabbit.png" class="hidden-rabbit"
+            style="top: 20px; left: 50%; transform: translateX(-50%);" onclick="foundRabbit(this)">
+        <div class="illustration" onclick="animateElement(this, 'glow')">
+            <img src="assets/images/legacy_lives_on_golden.png" alt="Legacy of Stella" class="anim-glow"
+                style="border: 5px solid #fff; width: 60%;">
         </div>
+        <div class="text-content">
+            <h1>The Legacy Lives On</h1>
+            <p>Wally Worner lived happily in Stella for the rest of his life. Marco, Seraphine, and Lola grew up
+                to
+                become brave knights themselves.</p>
+            <p style="margin-top: 15px;">They never forgot their motto: <em>"Non nobis tantum nati"</em> - Not
+                born
+                for ourselves alone.</p>
+            <p style="margin-top: 15px;">They had learned that true heroes help others, share what they have,
+                and
+                never give up.</p>
+            <p style="margin-top: 15px;"><strong>And to this day...</strong> if you visit Malta and walk down
+                Triq
+                il-Kurcifiss in Senglea, you can still see Stella standing at number 38—the Star that shone
+                through
+                the Great Siege!</p>
+            <p style="font-size: 14px; color: #555; text-align: center; margin-top: 10px;">(That's the real
+                Stella
+                in the photo!)</p>
+            <p
+                style="text-align: center; margin-top: 15px; font-family: 'Playfair Display', serif; font-size: 20px; color: #8b0000;">
+                The End... or is it? (Read Book 2!)</p>
+        </div>
+        <div class="page-number">8</div>
+    </div>
 
-        <!-- CONTROLS -->
-        <div class="controls">
-            <button id="prevBtn" onclick="previousPage()">← Previous</button>
-            <button id="mapBtn" class="icon-btn" onclick="toggleMap()">🗺️</button>
-            <button id="sndBtn" class="icon-btn" onclick="toggleSound()">🔊</button>
-            <button id="nextBtn" onclick="nextPage()">Next →</button>
-        </div>
+    <!-- CONTROLS -->
+    <div class="controls">
+        <button id="prevBtn" onclick="previousPage()">← Previous</button>
+        <button id="mapBtn" class="icon-btn" onclick="toggleMap()">🗺️</button>
+        <button id="sndBtn" class="icon-btn" onclick="toggleSound()">🔊</button>
+        <button id="nextBtn" onclick="nextPage()">Next →</button>
+    </div>
     </div>
 
     <!-- Map Modal -->
@@ -278,7 +270,7 @@
 
             <!-- Markers -->
             <div class="map-marker" style="top: 55%; left: 52%;" onclick="zoomMap('senglea')">
-                <div class="marker-icon">⭐</div>
+                <div class="marker-icon"></div>
                 <div class="marker-label">Stella House (Senglea)</div>
             </div>
 
